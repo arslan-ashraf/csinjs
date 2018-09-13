@@ -1,11 +1,16 @@
+{% load staticfiles %}
+
 <!DOCTYPE html> 
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Computer Science In Javascript</title>
-		<style>body { background: grey; }</style>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+		<!-- <style>body { background: grey; }</style> -->
 	</head>
 	<body>
+		{% block main %}
 		<h1>this is home page changed</h1>
+		{% endblock main %}
 	</body>
 </html>

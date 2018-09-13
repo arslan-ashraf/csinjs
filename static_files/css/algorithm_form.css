@@ -1,0 +1,8 @@
+.algorithm_form input {
+	border-radius: 3px;
+	width: 400px;
+}
+
+.algorithm_form textarea {
+	width: 500px;
+}

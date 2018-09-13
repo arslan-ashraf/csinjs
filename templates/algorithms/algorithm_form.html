@@ -1,13 +1,22 @@
 {% include 'base.html' %}
+{% load staticfiles %}
 
-{% block content %}
+<h1>this is appearing at the bottom</h1>
+
+{% block css %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/algorithm_form.css' %}">
+
+{% endblock css %}
+
+{% block main %}
 
 	<h1>form page</h1>
 
-	<form method="POST">
+	<form method="POST" class="algorithm_form">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<input type="submit" value="Create Algorithm">
 	</form>
 
-{% endblock content %}
+{% endblock main %}

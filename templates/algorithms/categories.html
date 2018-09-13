@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
-{% for algorithm in algorithms %}
-	<!-- get abslute url not here!!!! -->
-	<!-- <a href="{{ algorithm.get_absolue_url }}">{{ algorithm.category }}</a> -->
-{% endfor %}
+{% block main %}
+ 
+	<h1>These are the categories of the algorithms</h1>
+
+	{% for category in all_categories %}
+		<!-- get abslute url not here!!!! -->
+		<!-- <a href="{{ algorithm.get_absolue_url }}">{{ algorithm.category }}</a> -->
+		<div><a href="" class="button">{{ category }}</a></div>
+	{% endfor %}
+
+{% endblock main %}

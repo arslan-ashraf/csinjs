@@ -8,6 +8,7 @@ class Algorithm(models.Model):
 	title = models.CharField(max_length = 300)
 	friendly_title = models.SlugField(unique = True, default = None)
 	category = models.CharField(max_length = 300, default = None)
+	friendly_category = models.SlugField(unique = True, default = None)
 	code = models.TextField()
 	created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True, auto_now_add = False)
@@ -27,7 +28,9 @@ class Algorithm(models.Model):
 
 def create_friendly_title(sender, instance, *args, **kwargs):
 	friendly_title = slugify(instance.title)
+	friendly_category = slugify(instance.category)
 	instance.friendly_title = friendly_title
+	instance.friendly_category = friendly_category
 
 
 pre_save.connect(create_friendly_title, sender = Algorithm)

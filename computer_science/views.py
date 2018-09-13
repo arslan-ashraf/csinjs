@@ -2,10 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from .models import Algorithm
 from .forms import Algorithm_form
-
-	# print("-" * 50)
-	# print(form)
-	# print("-" * 50)
+from django.db.models import Count
 
 def home(request):
 	return render(request, 'home.html')
@@ -39,8 +36,15 @@ def update(request, friendly_title = None):
 	return render(request, 'algorithms/algorithm_form.html', items)	
 
 def categories(request):
-	all_categories = Algorithm.objects.all()
-	return
+	algorithms = Algorithm.objects.all()
+	hashmap = {}
+	for algorithm in algorithms:
+		hashmap[algorithm.category] = 1 
+	items = { 'all_categories': list(hashmap) }
+	print("-" * 50)
+	print(list(hashmap))
+	print("-" * 50)
+	return render(request, 'algorithms/categories.html', items)
 
 def show(request, friendly_title = None):
 	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)

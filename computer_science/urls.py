@@ -6,6 +6,6 @@ app_name = 'computer_science'
 urlpatterns = [
     url(r'^$', home, name = 'home'),
     url(r'^categories/$', categories, name = 'categories'),
-    url(r'^title/(?P<title>[-\w]+)/$', show, name = 'title'),
+    url(r'^algorithm/title/(?P<friendly_title>[-\w]+)/$', show, name = 'title'),
     url(r'^create/$', create, name = 'create'),
 ]

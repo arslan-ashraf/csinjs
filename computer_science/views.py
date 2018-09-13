@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from .models import Algorithm
 from .forms import Algorithm_form
 
+
 	# print("-" * 50)
 	# print(form)
 	# print("-" * 50)
@@ -24,15 +25,15 @@ def create(request):
 def categories(request):
 	return
 
-def show(request, title = None):
-	algorithm = get_object_or_404(Algorithm, title = title)
+def show(request, friendly_title = None):
+	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
 	items = { 'algorithm': algorithm, }
 	return 
 
-def update(request, title = None):
+def update(request, friendly_title = None):
 	if not request.user.is_superuser:
 		return Http404
 
-def delete(request, title = None):
+def delete(request, friendly_title = None):
 	if not request.user.is_superuser:
 		return Http404

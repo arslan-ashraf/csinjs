@@ -1,10 +1,13 @@
 from django.db import models
 from django.urls import reverse
+from django.db.models.signals import pre_save
+from django.utils.text import slugify
 
 # Create your models here.
 class Algorithm(models.Model):
 	title = models.CharField(max_length = 300)
-	category = models.CharField(max_length = 300)
+	friendly_title = models.SlugField(unique = True, default = None)
+	category = models.CharField(max_length = 300, default = None)
 	code = models.TextField()
 	created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True, auto_now_add = False)
@@ -16,4 +19,15 @@ class Algorithm(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('title', kwargs = {'title': self.title})
+		return reverse('computer_science:title', kwargs = {'friendly_title': self.friendly_title})
+
+	class Meta:
+		ordering = ['title']
+
+
+def create_friendly_title(sender, instance, *args, **kwargs):
+	friendly_title = slugify(instance.title)
+	instance.friendly_title = friendly_title
+
+
+pre_save.connect(create_friendly_title, sender = Algorithm)

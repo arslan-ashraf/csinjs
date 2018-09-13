@@ -6,16 +6,50 @@
 		<meta charset="UTF-8">
 		<title>{% block title %} {% endblock title %}</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/mobile_main.css' %}", media="screen and (max-width: 600px)">
 		{% block css %} {% endblock css %}
 	</head>
 	<body>
 		<div class="main">
 
+			<div class="navigation">
+				<div class="search-div">
+					<div class="search-icon">&#128269</div>
+					{% csrf_token %}
+					<input type="text" class="search-bar" placeholder="Search algorithms..." autofocus="true">
+					<ul id="search-results">
+						<!-- <a class="search-result-item" href="#"><li>algorithms</li></a> -->
+					</ul>
+				</div>
+				<ul class="links">
+					<a class="btns" href="{% url 'computer_science:home' %}"><li>Home</li></a>
+					<a class="btns" href="{% url 'computer_science:categories' %}"><li>Algorithms</li></a>
+					<!-- <a class="btns" href="{% url 'computer_science:home' %}"><li>Blog</li></a> -->
+				</ul>
+			</div>
+
 			{% block main %}
 
 			{% endblock main %}
 
-		<script type="text/javascript", src="{% static 'js/main.js' %}"></script>
+			<script type="text/javascript">
+				$('.search-bar').keyup(function(){
+					$.ajax({
+						url: 'search/',
+						dataType: 'html',
+						type: 'POST',
+						data: {
+							searched_text: $(this).val(),
+							csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val()
+						},
+						success: function(data){
+							$('$search-results').html(data)
+						}
+					})
+				})
+			</script>
+
+			{% block js %} {% endblock js %}
 
 		</div>
 	</body>

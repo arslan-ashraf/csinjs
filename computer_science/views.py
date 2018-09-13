@@ -18,7 +18,9 @@ def create(request):
 		new_algorithm = form.save(commit = False)
 		print(new_algorithm.cleaned_date)
 		new_algorithm.save()
-		return redirect(new_algorithm, permanent = True)
+		return redirect('computer_science:title',
+						friendly_title = new_algorithm.friendly_title, 
+						permanent = True)
 	items = { 'form': form, 'title': 'Create New Algorithm' }
 	return render(request, 'algorithms/algorithm_form.html', items)
 
@@ -30,7 +32,9 @@ def update(request, friendly_title = None):
 	if form.is_valid():
 		updated_algorithm = form.save(commit = False)
 		updated_algorithm.save()
-		return redirect(updated_algorithm, permanent = True)
+		return redirect('computer_science:title', 
+						friendly_title = updated_algorithm.friendly_title, 
+						permanent = True)
 	items = { 'form': form, 'title': 'Update Algorithm' }
 	return render(request, 'algorithms/algorithm_form.html', items)	
 
@@ -43,13 +47,12 @@ def show(request, friendly_title = None):
 	items = { 'algorithm': algorithm, }
 	return 
 
-def update(request, friendly_title = None):
-	if not request.user.is_superuser:
-		return Http404
-
 def delete(request, friendly_title = None):
 	if not request.user.is_superuser:
 		return Http404
 	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
 	algorithm.delete()
 	return redirect("computer_science:base", permanent = True)
+
+def search(request):
+	return 

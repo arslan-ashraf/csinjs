@@ -18,19 +18,21 @@
 					{% csrf_token %}
 					<input type="text" class="search-bar" placeholder="Search algorithms..." autofocus="true">
 					<ul id="search-results">
-						<!-- <a class="search-result-item" href="#"><li>algorithms</li></a> -->
+						<a class="search-result-item" href="#"><li>algorithms</li></a>
 					</ul>
 				</div>
 				<ul class="links">
 					<a class="btns" href="{% url 'computer_science:home' %}"><li>Home</li></a>
 					<a class="btns" href="{% url 'computer_science:categories' %}"><li>Algorithms</li></a>
-					<!-- <a class="btns" href="{% url 'computer_science:home' %}"><li>Blog</li></a> -->
+					<!-- <a class="btns" href="{% url 'computer_science:' %}"><li>Blog</li></a> -->
 				</ul>
 			</div>
 
 			{% block main %}
 
 			{% endblock main %}
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 			<script type="text/javascript">
 				$('.search-bar').keyup(function(){

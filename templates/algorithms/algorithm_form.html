@@ -1,7 +1,13 @@
-<h1>form page</h1>
+{% include 'base.html' %}
 
-<form method="POST">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Create Algorithm">
-</form>
+{% block content %}
+
+	<h1>form page</h1>
+
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Create Algorithm">
+	</form>
+
+{% endblock content %}

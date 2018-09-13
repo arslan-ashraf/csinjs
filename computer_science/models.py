@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Algorithm(models.Model):
@@ -13,3 +14,6 @@ class Algorithm(models.Model):
 
 	def __unicode__(self):
 		return self.title
+
+	def get_absolute_url(self):
+		return reverse('title', kwargs = {'title': self.title})

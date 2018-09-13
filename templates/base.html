@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Computer Science In Javascript</title>
+		<title>{% block title %} {% endblock title %}</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 		{% block css %} {% endblock css %}
 	</head>
@@ -12,8 +12,6 @@
 		<div class="main">
 
 			{% block main %}
-
-
 
 			{% endblock main %}
 

@@ -19,7 +19,7 @@ def create(request):
 		print(new_algorithm.cleaned_date)
 		new_algorithm.save()
 		return redirect(new_algorithm, permanent = True)
-	items = { 'form': form }
+	items = { 'form': form, 'title': 'Create New Algorithm' }
 	return render(request, 'algorithms/algorithm_form.html', items)
 
 def update(request, friendly_title = None):
@@ -31,7 +31,7 @@ def update(request, friendly_title = None):
 		updated_algorithm = form.save(commit = False)
 		updated_algorithm.save()
 		return redirect(updated_algorithm, permanent = True)
-	items = { 'form': form }
+	items = { 'form': form, 'title': 'Update Algorithm' }
 	return render(request, 'algorithms/algorithm_form.html', items)	
 
 def categories(request):

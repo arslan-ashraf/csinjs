@@ -8,7 +8,7 @@ class Algorithm(models.Model):
 	title = models.CharField(max_length = 300)
 	friendly_title = models.SlugField(unique = True, default = None)
 	category = models.CharField(max_length = 300, default = None)
-	friendly_category = models.SlugField(unique = True, default = None)
+	friendly_category = models.SlugField(unique = False, default = None)
 	code = models.TextField()
 	created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True, auto_now_add = False)
@@ -20,7 +20,10 @@ class Algorithm(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('computer_science:title', kwargs = {'friendly_title': self.friendly_title})
+		return reverse('computer_science:title', kwargs = {
+						'friendly_category': self.friendly_category, 
+						'friendly_title': self.friendly_title}
+						)
 
 	class Meta:
 		ordering = ['title']

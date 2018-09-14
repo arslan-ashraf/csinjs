@@ -16,7 +16,7 @@
 				<div class="search-div">
 					<div class="search-icon">&#128269</div>
 					{% csrf_token %}
-					<input type="text" class="search-bar" placeholder="Search algorithms..." autofocus="true">
+					<input type="text" class="search-bar" placeholder="Search algorithms..." autofocus="false">
 					<ul id="search-results">
 						<!-- <a class="search-result-item" href="#"><li>algorithms</li></a> -->
 					</ul>
@@ -35,22 +35,24 @@
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-			<script type="text/javascript">
+			<script>
+				
 				$('.search-bar').keyup(function(){
 					$.ajax({
-						url: 'search/',
+						method: 'POST',
+						url: '/algorithms/search/',
 						dataType: 'html',
-						type: 'POST',
 						data: {
-							searched_text: $(this).val(),
-							csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val()
+							'searched_text': $(this).val(),
+							'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val()
 						},
 						success: function(data){
-							$('$search-results').html(data)
+							console.log(data)
+							$('#search-results').html(data)
 						}
 					})
 				})
-
+					
 			</script>
 
 			{% block js %} {% endblock js %}

@@ -21,7 +21,7 @@ def create(request):
 	items = { 'form': form, 'title': 'Create New Algorithm' }
 	return render(request, 'algorithms/algorithm_form.html', items)
 
-def update(request, friendly_title = None):
+def update(request, friendly_category = None, friendly_title = None):
 	if not request.user.is_superuser:
 		return Http404
 	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
@@ -46,12 +46,18 @@ def categories(request):
 	print("-" * 50)
 	return render(request, 'algorithms/categories.html', items)
 
-def show(request, friendly_title = None):
+
+def index(request, friendly_category = None):
+	type_of_algorithms = Algorithm.objects.filter(friendly_category = friendly_category)
+	items = { 'algorithms': type_of_algorithms }
+	return render(request, 'algorithms/index.html', items)
+
+def show(request, friendly_category = None, friendly_title = None):
 	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
 	items = { 'algorithm': algorithm, }
 	return 
 
-def delete(request, friendly_title = None):
+def delete(request, friendly_category = None, friendly_title = None):
 	if not request.user.is_superuser:
 		return Http404
 	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
@@ -59,4 +65,12 @@ def delete(request, friendly_title = None):
 	return redirect("computer_science:base", permanent = True)
 
 def search(request):
-	return 
+	searched_text = request.POST['searched_text']
+	if len(searched_text) == 0:
+		return render(request, 'algorithms/search_results.html', { 'results': []})
+	algorithms = Algorithm.objects.filter(title__icontains = searched_text)[:5]
+	print('x' * 50)
+	print(algorithms)
+	print('x' * 50)
+	items = { 'results': algorithms }
+	return render(request, 'algorithms/search_results.html', items)

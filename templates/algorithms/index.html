@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block main %}
+	
+	{% for algorithm in algorithms %}
+		<a href="{{ algorithm.get_absolute_url }}" class="buttons">{{ algorithm.title }}</a>
+	{% endfor %}
+
+{% endblock main %}

@@ -1,0 +1,3 @@
+{% for algorithm in results %}
+	<a class="search-result-item" href="{{ algorithm.get_absolute_url }}"><li>{{ algorithm.title }}</li></a>
+{% endfor %}

@@ -6,7 +6,7 @@ from django.utils.text import slugify
 # Create your models here.
 class Algorithm(models.Model):
 	title = models.CharField(max_length = 300)
-	friendly_title = models.SlugField(unique = True, default = None)
+	friendly_title = models.SlugField(unique = False, default = None)
 	category = models.CharField(max_length = 300, default = None)
 	friendly_category = models.SlugField(unique = False, default = None)
 	code = models.TextField()

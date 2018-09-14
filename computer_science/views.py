@@ -8,15 +8,18 @@ def home(request):
 	return render(request, 'home.html')
 
 def create(request):
+	print('()' * 50)
+	print('create')
+	print('()' * 50)
 	if not request.user.is_superuser:
 		return Http404
 	form = Algorithm_form(request.POST or None)
 	if form.is_valid():
 		new_algorithm = form.save(commit = False)
-		print(new_algorithm.cleaned_date)
+		print(new_algorithm)
 		new_algorithm.save()
-		return redirect('computer_science:title',
-						friendly_title = new_algorithm.friendly_title, 
+		return redirect(new_algorithm,
+						new_algorithm.get_absolute_url, 
 						permanent = True)
 	items = { 'form': form, 'title': 'Create New Algorithm', 'value': 'Create' }
 	return render(request, 'algorithms/algorithm_form.html', items)
@@ -78,7 +81,7 @@ def delete(request, friendly_category = None, friendly_title = None):
 	if not algorithm:
 		return Http404
 	algorithm.delete()
-	return redirect("computer_science:base", permanent = True)
+	return redirect("computer_science:home", permanent = True)
 
 def search(request):
 	searched_text = request.POST['searched_text']

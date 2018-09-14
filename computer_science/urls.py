@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^algorithms/$', categories, name = 'categories'),
     url(r'^algorithms/(?P<friendly_category>[-\w]+)/(?P<friendly_title>[-\w]+)/$', show, name = 'title'),
 	url(r'^algorithms/(?P<friendly_category>[-\w]+)/(?P<friendly_title>[-\w]+)/edit/$', update, name = 'update'),
-	url(r'^algorithms/(?P<friendly_category>[-\w]+)/(?P<friendly_title>[-\w]+)/delete/$', update, name = 'delete'),
-    url(r'^algorithms/create/$', create, name = 'create'),
+	url(r'^algorithms/(?P<friendly_category>[-\w]+)/(?P<friendly_title>[-\w]+)/delete/$', delete, name = 'delete'),
+    url(r'^algorithm/create/$', create, name = 'create'),
    
 ]

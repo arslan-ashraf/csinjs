@@ -18,7 +18,7 @@
 	<form method="POST" class="algorithm_form">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<input type="submit" value="Create Algorithm">
+		<input type="submit" value="{{ value }}">
 	</form>
 
 {% endblock main %}

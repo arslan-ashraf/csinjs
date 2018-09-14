@@ -18,10 +18,13 @@ def create(request):
 		return redirect('computer_science:title',
 						friendly_title = new_algorithm.friendly_title, 
 						permanent = True)
-	items = { 'form': form, 'title': 'Create New Algorithm' }
+	items = { 'form': form, 'title': 'Create New Algorithm', 'value': 'Create' }
 	return render(request, 'algorithms/algorithm_form.html', items)
 
 def update(request, friendly_category = None, friendly_title = None):
+	print('|' * 50)
+	print(request)
+	print('|' * 50)
 	if not request.user.is_superuser:
 		return Http404
 	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
@@ -29,10 +32,16 @@ def update(request, friendly_category = None, friendly_title = None):
 	if form.is_valid():
 		updated_algorithm = form.save(commit = False)
 		updated_algorithm.save()
-		return redirect('computer_science:title', 
-						friendly_title = updated_algorithm.friendly_title, 
+		return redirect(updated_algorithm, 
+						# friendly_category = updated_algorithm.friendly_category,
+						# friendly_title = updated_algorithm.friendly_title, 
+						updated_algorithm.get_absolute_url,
 						permanent = True)
-	items = { 'form': form, 'title': 'Update Algorithm' }
+		print('x' * 50)
+		print(x)
+		print('x' * 50)
+		# return x
+	items = { 'form': form, 'title': 'Update Algorithm', 'value': 'Update' }
 	return render(request, 'algorithms/algorithm_form.html', items)	
 
 def categories(request):
@@ -47,20 +56,27 @@ def categories(request):
 def index(request, friendly_category = None):
 	type_of_algorithms = Algorithm.objects.filter(friendly_category = friendly_category)
 	items = { 'algorithms': type_of_algorithms }
-	print('x' * 50)
+	print('=' * 50)
 	print(type_of_algorithms)
-	print('x' * 50)
+	print('=' * 50)
 	return render(request, 'algorithms/index.html', items)
 
 def show(request, friendly_category = None, friendly_title = None):
-	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
-	items = { 'algorithm': algorithm, }
+	algorithm = Algorithm.objects.filter(friendly_title = friendly_title)
+	if not algorithm:
+		return Http404
+	items = { 'algorithm': algorithm[0] }
+	print('#' * 50)
+	print(algorithm[0])
+	print('#' * 50)
 	return render(request, 'algorithms/show.html', items)
 
 def delete(request, friendly_category = None, friendly_title = None):
 	if not request.user.is_superuser:
 		return Http404
-	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
+	algorithm = Algorithm.objects.filter(friendly_title = friendly_title)
+	if not algorithm:
+		return Http404
 	algorithm.delete()
 	return redirect("computer_science:base", permanent = True)
 

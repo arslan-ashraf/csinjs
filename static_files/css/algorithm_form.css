@@ -1,6 +1,5 @@
-.algorithm_form input {
-	border-radius: 3px;
-	width: 400px;
+.algorithm_form p label {
+	display: none;
 }
 
 .algorithm_form textarea {

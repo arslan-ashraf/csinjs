@@ -98,6 +98,11 @@
 
 	<a href="" class="queens-generator button">Generate Queens</a>
 
+	{% if user.is_superuser %}
+		<br>
+		<a href="{% url 'computer_science:create' %}" class="button">Create Algorithm</a>
+	{% endif %}
+
 {% endblock main %}
 
 {% block js %}

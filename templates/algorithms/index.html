@@ -3,7 +3,9 @@
 {% block main %}
 	
 	{% for algorithm in algorithms %}
-		<a href="{{ algorithm.get_absolute_url }}" class="buttons">{{ algorithm.title }}</a>
+		<div>
+			<a href="{{ algorithm.get_absolute_url }}" class="buttons">{{ algorithm.title }}</a>
+		</div>
 	{% endfor %}
 
 {% endblock main %}

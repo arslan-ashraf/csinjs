@@ -39,23 +39,23 @@ def categories(request):
 	algorithms = Algorithm.objects.all()
 	hashmap = {}
 	for algorithm in algorithms:
-		hashmap[algorithm.category] = 1 
-	items = { 'all_categories': list(hashmap) }
-	print("-" * 50)
-	print(list(hashmap))
-	print("-" * 50)
+		hashmap[algorithm.category] = algorithm.friendly_category
+	items = { 'all_categories': hashmap }
 	return render(request, 'algorithms/categories.html', items)
 
 
 def index(request, friendly_category = None):
 	type_of_algorithms = Algorithm.objects.filter(friendly_category = friendly_category)
 	items = { 'algorithms': type_of_algorithms }
+	print('x' * 50)
+	print(type_of_algorithms)
+	print('x' * 50)
 	return render(request, 'algorithms/index.html', items)
 
 def show(request, friendly_category = None, friendly_title = None):
 	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
 	items = { 'algorithm': algorithm, }
-	return 
+	return render(request, 'algorithms/show.html', items)
 
 def delete(request, friendly_category = None, friendly_title = None):
 	if not request.user.is_superuser:
@@ -69,8 +69,8 @@ def search(request):
 	if len(searched_text) == 0:
 		return render(request, 'algorithms/search_results.html', { 'results': []})
 	algorithms = Algorithm.objects.filter(title__icontains = searched_text)[:5]
-	print('x' * 50)
-	print(algorithms)
-	print('x' * 50)
+
 	items = { 'results': algorithms }
 	return render(request, 'algorithms/search_results.html', items)
+
+

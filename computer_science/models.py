@@ -25,6 +25,9 @@ class Algorithm(models.Model):
 						'friendly_title': self.friendly_title}
 						)
 
+	def get_category_url(self):
+		return reverse('computer_science:index', kwargs = { 'friendly_category': self.friendly_category })
+
 	class Meta:
 		ordering = ['title']
 

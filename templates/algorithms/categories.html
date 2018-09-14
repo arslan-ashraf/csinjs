@@ -4,9 +4,8 @@
  
 	<h1>These are the categories of the algorithms</h1>
 
-	{% for category in all_categories %}
-		<!-- <a href="{{ algorithm.get_absolue_url }}">{{ algorithm.category }}</a> -->
-		<div><a href="" class="button">{{ category }}</a></div>
+	{% for category, friendly_category in all_categories.items %}
+		<div><a href="{{ friendly_category }}" class="button">{{ category }}</a></div>
 	{% endfor %}
 
 {% endblock main %}

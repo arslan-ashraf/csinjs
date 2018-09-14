@@ -52,13 +52,13 @@ def categories(request):
 	hashmap = {}
 	for algorithm in algorithms:
 		hashmap[algorithm.category] = algorithm.friendly_category
-	items = { 'all_categories': hashmap }
+	items = { 'all_categories': hashmap, 'title': 'Categories of Algorithms' }
 	return render(request, 'algorithms/categories.html', items)
 
 
 def index(request, friendly_category = None):
 	type_of_algorithms = Algorithm.objects.filter(friendly_category = friendly_category)
-	items = { 'algorithms': type_of_algorithms }
+	items = { 'algorithms': type_of_algorithms, 'title': type_of_algorithms[0].category }
 	print('=' * 50)
 	print(type_of_algorithms)
 	print('=' * 50)

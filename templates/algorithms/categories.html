@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	{{ title }}
+{% endblock title %}
+
+{% block css %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/algorithm_categories.css' %}">
+
+{% endblock css %}
 
 {% block main %}
  
-	<h1>These are the categories of the algorithms</h1>
+	<h1>Categories of algorithms</h1>
 
-	{% for category, friendly_category in all_categories.items %}
-		<div><a href="{{ friendly_category }}" class="button">{{ category }}</a></div>
-	{% endfor %}
+	<div class="algorithm-categories">
+		{% for category, friendly_category in all_categories.items %}
+			<div class="each-category"><a href="{{ friendly_category }}" class="button">{{ category }}</a></div>
+		{% endfor %}
+	</div>
 
 {% endblock main %}

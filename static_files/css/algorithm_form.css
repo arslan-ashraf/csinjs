@@ -3,7 +3,8 @@
 }
 
 .algorithm_form textarea {
-	
+	width: 800px;
+	font-size: 20px;
 }
 
 .algorithm_form input {

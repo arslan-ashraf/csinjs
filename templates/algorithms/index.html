@@ -1,11 +1,34 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	{{ title }}
+{% endblock title %}
+
+{% block css %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/list_of_algorithms.css' %}">
+
+{% endblock css %}
 
 {% block main %}
+
+	<h2> 
+		{% if title == 'Data Structure' %}
+			Data Structures
+		{% else %}
+			{{ title }} Algorithms
+		{% endif %}
+	</h2>
 	
-	{% for algorithm in algorithms %}
-		<div>
-			<a href="{% url 'computer_science:title' algorithm.friendly_category algorithm.friendly_title %}" class="buttons">{{ algorithm.title }}</a>
-		</div>
-	{% endfor %}
+	<div class="list_of_algorithms">
+
+		{% for algorithm in algorithms %}
+			<div>
+				<a href="{% url 'computer_science:title' algorithm.friendly_category algorithm.friendly_title %}" class="buttons">{{ algorithm.title }}</a>
+			</div>
+		{% endfor %}
+
+	</div>
 
 {% endblock main %}

@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	{{ title }}
+{% endblock title %}
+
+{% block css %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/algorithm.css' %}">
+
+{% endblock css %}
 
 {% block main %}
 	
-	<div>{{ algorithm.title }}</div>
-	<div>{{ algorithm.category }}</div>
-	<div>{{ algorithm.code }}</div>
+	<div class="full-algorithm">
+		<h2>{{ algorithm.title }}</h2>
+		<div class="algorithm-code">{{ algorithm.code|safe }}</div>
 
-	<a href="{% url 'computer_science:update' algorithm.friendly_category algorithm.friendly_title %}" class="button">Update</a>
-	<a href="{% url 'computer_science:delete' algorithm.friendly_category algorithm.friendly_title %}" class="button">Delete</a>
+		{% if user.is_superuser %}
+
+			<a href="{% url 'computer_science:update' algorithm.friendly_category algorithm.friendly_title %}" class="button">Update</a>
+			<a href="{% url 'computer_science:delete' algorithm.friendly_category algorithm.friendly_title %}" class="button">Delete</a>
+	
+		{% endif %}
+
+	</div>
 
 {% endblock main %}

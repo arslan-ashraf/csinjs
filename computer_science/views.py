@@ -68,7 +68,7 @@ def show(request, friendly_category = None, friendly_title = None):
 	algorithm = Algorithm.objects.filter(friendly_title = friendly_title)
 	if not algorithm:
 		return Http404
-	items = { 'algorithm': algorithm[0] }
+	items = { 'algorithm': algorithm[0], 'title': algorithm[0].title }
 	print('#' * 50)
 	print(algorithm[0])
 	print('#' * 50)

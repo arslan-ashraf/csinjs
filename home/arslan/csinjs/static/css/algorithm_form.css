@@ -1,0 +1,16 @@
+.algorithm_form p label {
+	display: none;
+}
+
+.algorithm_form textarea {
+	width: 800px;
+	font-size: 20px;
+}
+
+.algorithm_form input {
+	height: 20px;
+	padding: 5px;
+	border-radius: 3px;
+	border: none;
+	font-size: 16px;
+}

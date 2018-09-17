@@ -1,0 +1,24 @@
+.full-algorithm {
+	margin-top: 10px;
+}
+
+.algorithm-code {
+	text-align: left;
+	width: 700px;
+	margin: 0 auto;
+}
+.code-editor-odd {
+	background: rgb(43, 44, 56);
+	color: white;
+}
+
+.code-editor-even {
+	background: rgb(61, 61, 61);
+	color: white;
+}
+
+.code-editor {
+	padding: 5px;
+	font-family: monospace;
+	font-size: 16px;
+}

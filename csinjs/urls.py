@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include("computer_science.urls")),
+    url(r'^', include("blog.urls")),
 ]
 
 #if settings.DEBUG:

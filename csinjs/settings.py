@@ -26,7 +26,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["arslan.pythonanywhere.com"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -133,8 +132,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
 #'home/arslan/csinjs/home/arslan/csinjs/static'
 
-print('x' * 50)
-print(os.path.join(BASE_DIR, 'static_files'))
-print(os.path.join(os.path.dirname(BASE_DIR), 'static_files'))
-print('x' * 50)
+# print('x' * 50)
+# print(os.path.join(BASE_DIR, 'static_files'))
+# print(os.path.join(os.path.dirname(BASE_DIR), 'static_files'))
+# print('x' * 50)
 

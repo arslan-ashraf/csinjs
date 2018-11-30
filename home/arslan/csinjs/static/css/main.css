@@ -1,0 +1,178 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: grey;
+}
+
+.main {
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+	font-family: sans-serif;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+li {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	display: inline-block;
+}
+
+.navigation {
+	text-align: right;
+	height: 60px;
+	background: rgb(68,68,68);
+	margin-bottom: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.search-div {
+	position: relative;
+	top: -2px;
+}
+
+.search-icon {
+	position: absolute;
+	font-size: 20px;
+	color: rgb(130,130,130);
+	display: inline-block;
+	position: fixed;
+	top: 15px;
+	left: 210px;
+	border-radius: 5px;
+}
+
+.search-bar {
+	float: left;
+	padding: 5px 5px 5px 33px;
+	font-weight: bold;
+	border: 0;
+	height: 30px;
+	border-radius: 5px;
+	margin: 11px 0 0 200px;
+	background: lightgrey;
+	width: 350px;
+}
+
+.search-bar:focus {
+	outline: 0;
+	/*border: 1.5px solid rgba(8, 135, 56);*/
+}
+
+
+#search-results {
+	margin: 0; 
+	padding: 0;
+	position: fixed;
+	left: 235px;
+	top: 60px;
+	text-align: left;
+	width: 350px;
+	background: rgba(190, 190, 190, 1);
+}
+
+.search-result-item {
+	text-decoration: none;
+	width: 100%;
+	display: inline-block;
+	height: 26px;
+	line-height: 26px;
+	color: black;
+	font-weight: bold;
+	padding: 3px 0;
+}
+
+.search-result-item:hover {
+	background: grey;
+	color: white;
+}
+
+.button {
+	border-radius: 5px;
+	padding: 7px;
+	margin: 5px;
+	background: rgb(29, 39, 183);
+	color: white;
+	font-size: 16px;
+}
+
+.button:hover {
+	background: white;
+	color: rgb(29, 39, 183);
+}
+
+.btns {
+	border: 1px solid rgb(9, 234, 95);
+	border-radius: 5px;
+	padding: 7px;
+	margin: -5px 15px 0 0;
+	color: rgb(9, 234, 95);
+	font-size: 18px;
+}
+
+.btns:hover {
+	background: rgb(9, 135, 56);
+	color: white;
+}
+
+.links {
+	display: inline-block;
+	padding: 0;
+	margin-right: 200px;
+}
+
+.dummy {
+	height: 60px;
+}
+
+.eightboard {
+	margin: 0 auto;
+	width: 400px;
+	height: 400px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+.row {
+	width: 400px;
+	height: 50px;
+	display: flex;
+}
+
+.cell {
+	width: 50px;
+	height: 50px;
+	font-size: 1.5em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.odd-row .cell:nth-child(odd){
+	background: rgb(255, 236, 214);
+}
+
+.odd-row .cell:nth-child(even){
+	background: rgb(216, 139, 23);
+}
+
+.even-row .cell:nth-child(odd){
+	background: rgb(216, 139, 23);	
+}
+
+.even-row .cell:nth-child(even){
+	background: rgb(255, 236, 214);	
+}

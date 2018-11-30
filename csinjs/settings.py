@@ -19,12 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'SECRET_KEY';
+SECRET_KEY = '=*ntzv+%=q6raed-k6x)fggp&*2c3m&=opivtbk%hx6wz*ds*d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["arslan.pythonanywhere.com"]
 
 
 # Application definition
@@ -119,13 +119,22 @@ USE_TZ = True
 
 STATIC_URL = '/static_files/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_files'),
-]
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_files'),]
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_files')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
-print("x" * 50)
-print(os.path.join(BASE_DIR, 'static_files'))
-print(STATIC_ROOT)
+#os.path.join(os.path.dirname(BASE_DIR), 'static_files')
+
+#'home/arslan/static_files'
+
+# os.path.join(BASE_DIR, 'static_files')
+
+#os.path.join(os.path.dirname(BASE_DIR), 'static_files')
+
+#'home/arslan/csinjs/home/arslan/csinjs/static'
+
 print('x' * 50)
+print(os.path.join(BASE_DIR, 'static_files'))
+print(os.path.join(os.path.dirname(BASE_DIR), 'static_files'))
+print('x' * 50)
+

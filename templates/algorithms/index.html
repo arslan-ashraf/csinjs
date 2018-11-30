@@ -13,22 +13,26 @@
 
 {% block main %}
 
-	<h2> 
+	<h2>
 		{% if title == 'Data Structure' %}
-			Data Structures
+			Data Structure
 		{% else %}
 			{{ title }} Algorithms
 		{% endif %}
 	</h2>
-	
-	<div class="list_of_algorithms">
 
-		{% for algorithm in algorithms %}
-			<div>
-				<a href="{% url 'computer_science:title' algorithm.friendly_category algorithm.friendly_title %}" class="buttons">{{ algorithm.title }}</a>
-			</div>
-		{% endfor %}
+    <div class='specific-type-algorithms'>
 
-	</div>
+    	<div class="list_of_algorithms">
+
+    		{% for algorithm in algorithms %}
+    			<div class='algorithm-button'>
+    				<a href="{% url 'computer_science:title' algorithm.friendly_category algorithm.friendly_title %}" class="button">{{ algorithm.title }}</a>
+    			</div>
+    		{% endfor %}
+
+    	</div>
+
+    </div>
 
 {% endblock main %}

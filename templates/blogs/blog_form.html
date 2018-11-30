@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	{{ title }}
+{% endblock title %}
+
+{% block css %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/blog_form.css' %}">
+
+{% endblock css %}
+
+{% block main %}
+
+	<h1>Blog form page</h1>
+
+	<form method="POST" class="algorithm_form" class="algorithm_form">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="{{ value }}" class='button'>
+	</form>
+
+{% endblock main %}
+
+{% block js %}
+
+{% endblock js %}

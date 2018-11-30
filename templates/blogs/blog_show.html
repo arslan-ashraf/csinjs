@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	{{ title }}
+{% endblock title %}
+
+{% block css %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/single_blog.css' %}">
+
+{% endblock css %}
+
+{% block main %}
+	
+	<div class="full-blog">
+		
+		<h2>{{ blog.title }}</h2>
+		<div class="blog-code">{{ blog.content|safe }}</div>
+
+		{% if user.is_superuser %}
+
+			<a href="{% url 'blog:update' blog.friendly_title %}" class="button">Update</a>
+			<a href="{% url 'blog:delete' blog.friendly_title %}" class="button">Delete</a>
+	
+		{% endif %}
+
+	</div>
+
+{% endblock main %}

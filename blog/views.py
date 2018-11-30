@@ -6,13 +6,13 @@ from .forms import Blog_form
 
 def blogs_home(request):
 	blogs = Blog.objects.all()
-	items = { 'blogs': blogs, 'title': 'Blog' }
+	items = { 'blogs': blogs, 'title': 'Articles' }
 	return render(request, 'blogs/blogs_home.html', items)
 
 def create(request):
-	# print('()' * 50)
-	# print('create')
-	# print('()' * 50)
+	print('()' * 50)
+	print('create')
+	print('()' * 50)
 	if not request.user.is_superuser:
 		return Http404
 	form = Blog_form(request.POST or None)
@@ -43,18 +43,18 @@ def update(request, friendly_title = None):
 		# print('x' * 50)
 		# print(x)
 		# print('x' * 50)
-	items = { 'form': form, 'title': 'Update BLog', 'value': 'Update' }
+	items = { 'form': form, 'title': 'Update Blog', 'value': 'Update' }
 	return render(request, 'blogs/blog_form.html', items)
 
 def show(request, friendly_title = None):
 	blog = Blog.objects.filter(friendly_title = friendly_title)
 	if not Blog:
 		return Http404
-	items = { 'Blog': Blog[0], 'title': Blog[0].title }
+	items = { 'blog': blog[0], 'title': blog[0].title }
 	# print('#' * 50)
 	# print(Blog[0])
 	# print('#' * 50)
-	return render(request, 'Blogs/blog_show.html', items)
+	return render(request, 'blogs/blog_show.html', items)
 
 def delete(request, friendly_title = None):
 	if not request.user.is_superuser:

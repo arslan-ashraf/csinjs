@@ -19,7 +19,7 @@ def create(request):
 		print(new_algorithm)
 		new_algorithm.save()
 		return redirect(new_algorithm,
-						new_algorithm.get_absolute_url, 
+						new_algorithm.get_absolute_url,
 						permanent = True)
 	items = { 'form': form, 'title': 'Create New Algorithm', 'value': 'Create' }
 	return render(request, 'algorithms/algorithm_form.html', items)
@@ -35,9 +35,9 @@ def update(request, friendly_category = None, friendly_title = None):
 	if form.is_valid():
 		updated_algorithm = form.save(commit = False)
 		updated_algorithm.save()
-		return redirect(updated_algorithm, 
+		return redirect(updated_algorithm,
 						# friendly_category = updated_algorithm.friendly_category,
-						# friendly_title = updated_algorithm.friendly_title, 
+						# friendly_title = updated_algorithm.friendly_title,
 						updated_algorithm.get_absolute_url,
 						permanent = True)
 		print('x' * 50)
@@ -45,10 +45,13 @@ def update(request, friendly_category = None, friendly_title = None):
 		print('x' * 50)
 		# return x
 	items = { 'form': form, 'title': 'Update Algorithm', 'value': 'Update' }
-	return render(request, 'algorithms/algorithm_form.html', items)	
+	return render(request, 'algorithms/algorithm_form.html', items)
 
 def categories(request):
 	algorithms = Algorithm.objects.all()
+	print('%' * 50)
+	print(algorithms.count())
+	print('%' * 50)
 	hashmap = {}
 	for algorithm in algorithms:
 		hashmap[algorithm.category] = algorithm.friendly_category

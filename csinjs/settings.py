@@ -138,9 +138,3 @@ print(os.path.join(BASE_DIR, 'static_files'))
 print(os.path.join(os.path.dirname(BASE_DIR), 'static_files'))
 print('x' * 50)
 
-
-
-
-
-
-#

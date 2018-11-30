@@ -2,12 +2,12 @@ from django.shortcuts import render
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
-# from .models import Algorithm
-# from .forms import Algorithm_form
-# from django.db.models import 
+from .models import Blog
+from .forms import Blog_form
 
 def blogs_home(request):
-	items = { 'title': 'Blog'}
+	blogs = Blog.objects.all()
+	items = { 'blogs': blogs, 'title': 'Blog' }
 	return render(request, 'blogs/blogs_home.html', items)
 
 # def create(request):

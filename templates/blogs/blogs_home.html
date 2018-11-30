@@ -7,8 +7,8 @@
 
 {% block css %}
 
+	<link rel="stylesheet" type="text/css" href="{% static 'css/list_of_blogs.css' %}">
 	
-
 {% endblock css %}
 
 {% block main %}
@@ -17,11 +17,21 @@
 		
 	</h2>
 
-    <div class='specific-type-algorithms'>
+    <div class='specific-type-blogs'>
 
-    	<div class="list_of_algorithms">
+    	<div class="list_of_blogs">
 
-    		
+            {% if user.is_superuser %}
+
+                <a href="{% url 'blog:create' %}" class="button">Create</a>
+        
+            {% endif %}
+
+			{% for blog in blogs %}
+    			<div class='blog-button'>
+    				<a href="{% url 'blog:show' blog.friendly_title %}" class="button">{{ blog.title }}</a>
+    			</div>
+    		{% endfor %}
 
     	</div>
 

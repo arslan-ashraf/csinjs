@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'computer_science',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -136,4 +137,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 # print(os.path.join(BASE_DIR, 'static_files'))
 # print(os.path.join(os.path.dirname(BASE_DIR), 'static_files'))
 # print('x' * 50)
-

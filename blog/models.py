@@ -17,9 +17,7 @@ class Blog(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('blog:title', kwargs = {
-						'friendly_title': self.friendly_title}
-						)
+		return reverse('blog:title', kwargs = { 'friendly_title': self.friendly_title })
 
 	class Meta:
 		ordering = ['title']

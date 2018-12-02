@@ -14,7 +14,7 @@
 {% block main %}
 
 	<h2>
-		
+		Articles
 	</h2>
 
     <div class='specific-type-blogs'>
@@ -28,11 +28,15 @@
             {% endif %}
 
 			{% for blog in blogs %}
-    			<div class='blog-button'>
-    				<a href="{% url 'blog:show' blog.friendly_title %}" class="button">{{ blog.title }}</a>
+    			<div class='blog-in-list'>
+    				<a href="{% url 'blog:show' blog.friendly_title %}" class="blog_button">{{ blog.title }}</a>
+                    <br/>
                     {% if blog.image %}
-                        <img src="{{ blog.image.url }}" width="160">
+                        <a href="{% url 'blog:show' blog.friendly_title %}">
+                            <img src="{{ blog.image.url }}" width="160">
+                        </a>
                     {% endif %}
+                    <br/>
     			</div>
     		{% endfor %}
 

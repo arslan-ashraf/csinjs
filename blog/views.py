@@ -15,7 +15,7 @@ def create(request):
 	print('()' * 50)
 	if not request.user.is_superuser:
 		return Http404
-	form = Blog_form(request.POST or None)
+	form = Blog_form(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		new_blog = form.save(commit = False)
 		print(new_blog)
@@ -33,7 +33,7 @@ def update(request, friendly_title = None):
 	if not request.user.is_superuser:
 		return Http404
 	blog = get_object_or_404(Blog, friendly_title = friendly_title)
-	form = Blog_form(request.POST or None, instance = blog)
+	form = Blog_form(request.POST or None, request.FILES or None, instance = blog)
 	if form.is_valid():
 		updated_blog = form.save(commit = False)
 		updated_blog.save()

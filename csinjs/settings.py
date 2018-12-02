@@ -123,9 +123,10 @@
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
-# MEDIA_URL = '/media_files'
+# MEDIA_URL = '/media/'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media_files')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # #os.path.join(os.path.dirname(BASE_DIR), 'static_files')
 
 # 'home/arslan/static_files'
@@ -281,19 +282,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_files')
 
-MEDIA_URL = '/media_files'
+MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_files')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-
-
-
-
-
-
-
-
-
-
-
+# print('x' * 50)
+# print(MEDIA_ROOT)
+# print('x' * 50)

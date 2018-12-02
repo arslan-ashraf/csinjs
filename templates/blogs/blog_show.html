@@ -16,6 +16,9 @@
 	<div class="full-blog">
 		
 		<h2>{{ blog.title }}</h2>
+		{% if blog.image %}
+			<img src="{{ blog.image.url }}" width="640">
+		{% endif %}
 		<div class="blog-code">{{ blog.content|safe }}</div>
 
 		{% if user.is_superuser %}

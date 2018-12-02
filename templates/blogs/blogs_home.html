@@ -30,6 +30,9 @@
 			{% for blog in blogs %}
     			<div class='blog-button'>
     				<a href="{% url 'blog:show' blog.friendly_title %}" class="button">{{ blog.title }}</a>
+                    {% if blog.image %}
+                        <img src="{{ blog.image.url }}" width="160">
+                    {% endif %}
     			</div>
     		{% endfor %}
 

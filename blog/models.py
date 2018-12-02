@@ -6,6 +6,7 @@ from django.utils.text import slugify
 class Blog(models.Model):
 	title = models.CharField(max_length = 300)
 	friendly_title = models.SlugField(unique = False, default = None)
+	image = models.FileField(null = True, blank = True)
 	content = models.TextField()
 	created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True, auto_now_add = False)

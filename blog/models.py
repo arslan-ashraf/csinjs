@@ -23,7 +23,7 @@ class Blog(models.Model):
 						)
 
 	class Meta:
-		ordering = ['title']
+		ordering = ['created_at']
 
 
 def create_friendly_title(sender, instance, *args, **kwargs):

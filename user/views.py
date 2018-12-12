@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-# from .models import User
+from django.contrib.auth.models import User
 from .forms import Login_form, Registration_form, Edit_profile_form, Change_password_form
 from ajax.models import Notification
 

@@ -6,5 +6,4 @@ class Blog_admin(admin.ModelAdmin):
 	class Meta:
 		model = Blog
 
-
 admin.site.register(Blog, Blog_admin)

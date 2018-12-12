@@ -39,7 +39,7 @@ def update(request, friendly_title = None):
 	# print('|' * 50)
 	form = Edit_profile_form(request.POST or None, instance = user)
 	if form.is_valid():
-		updated_user = form.save()
+		form.save()
 		return redirect('users:profile', permanent = True)
 	# 	# print('x' * 50)
 	# 	# print(x)
@@ -52,7 +52,14 @@ def profile(request):
 	items = { 'user': request.user, 'title': 'Profile', 'comments': request.user.comments_set.all() }
 	return render(request, 'users/user_profile.html', items)
 
-def 
+def change_password(request):
+	form = Change_password_form(data = request.POST or None, user = request.user)
+	if form.is_valid():
+		form.save()
+		update_session_auth_hash(request, form.user)
+		return redirect('users:profile', permanent = True)
+	items = { 'user': request.user, 'title': 'Change Password', 'btn_value': 'Save Password', 'info': 'Change Password' }
+	return render(request, 'users/user_form.html', items)
 
 @login_required
 def delete(request, friendly_title = None):

@@ -13,7 +13,11 @@
 
 {% block main %}
 
-	<h1>Welcome {{ user.username }}</h1>
+	<h2>Welcome {{ user.username }}</h2>
+
+	<a href="{% url 'user:update' %}" class="button-class-a">Update Profile</a>
+	<a href="{% url 'user:change_password' %}" class="button-class-a">Change Password</a>
+	<a href="{% url 'user:delete' %}" class="button-class-a">Delete Account</a>
 
 {% endblock main %}
 

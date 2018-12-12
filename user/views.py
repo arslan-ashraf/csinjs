@@ -18,6 +18,14 @@ def user_login(request):
 	items = { 'form': form, 'title': 'Login', 'value': 'Login', 'info': 'Sign In' }
 	return render(request, 'users/user_form.html', items)
 
+@login_required
+def user_logout(request):
+	print('x' * 50)
+	print(request.user)
+	print('x' * 50)
+	logout(request)
+	return redirect('computer_science:home', permanent = True)
+
 def create(request):
 	# print('()' * 50)
 	# print('create')
@@ -35,15 +43,13 @@ def create(request):
 @login_required
 def update(request, friendly_title = None):
 	# print('|' * 50)
+	# print('update profile')
 	# print(request)
 	# print('|' * 50)
-	form = Edit_profile_form(request.POST or None, instance = user)
+	form = Edit_profile_form(request.POST or None, instance = request.user)
 	if form.is_valid():
 		form.save()
-		return redirect('users:profile', permanent = True)
-	# 	# print('x' * 50)
-	# 	# print(x)
-	# 	# print('x' * 50)
+		return redirect('user:profile', permanent = True)
 	items = { 'form': form, 'title': 'Edit Profile', 'value': 'Save Changes', 'info': 'Edit Profile' }
 	return render(request, 'users/user_form.html', items)
 
@@ -59,16 +65,11 @@ def change_password(request):
 		form.save()
 		update_session_auth_hash(request, form.user)
 		return redirect('users:profile', permanent = True)
-	items = { 'user': request.user, 'title': 'Change Password', 'value': 'Save Password', 'info': 'Change Password' }
+	items = { 'form': form, 'user': request.user, 'title': 'Change Password', 'value': 'Save Password', 'info': 'Change Password' }
 	return render(request, 'users/user_form.html', items)
 
 @login_required
 def	delete(request):
 	user = request.user
 	user.delete()
-	return redirect('computer_science:home', permanent = True)
-
-@login_required
-def user_logout(request):
-	logout(request)
 	return redirect('computer_science:home', permanent = True)

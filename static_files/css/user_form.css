@@ -6,6 +6,7 @@
     padding: 5px;
     border-radius: 5px;
     border: none;
+    font-size: 18px;
 }
 
 .user_form li {
@@ -18,5 +19,17 @@
 }
 
 .button-class-a {
-	
+	border-radius: 5px;
+	border: 0;
+	padding: 7px;
+	margin: 5px;
+	background: rgb(29, 39, 183);
+	color: white;
+	font-size: 16px;
+}
+
+.button-class-a:hover {
+	background: white;
+	color: rgb(29, 39, 183);
+	cursor: pointer;
 }

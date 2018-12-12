@@ -18,6 +18,14 @@
 		<div class="algorithm-code">{{ algorithm.code|safe }}</div>
 		<br />
 
+		{% for comment in comments %}
+			<div class="single-comment">
+				<p class="comment-username"><b>{{ comment.user }}</b> {{ comment.created_at|timesince }}</p>
+				<p class="comment-content">{{ comment.content }}</p>
+			</div>
+				
+		{% endfor %}
+
 		{% if user.is_superuser %}
 
 			<a href="{% url 'computer_science:update' algorithm.friendly_category algorithm.friendly_title %}" class="button">Update</a>

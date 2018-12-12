@@ -55,7 +55,7 @@ def update(request, friendly_title = None):
 
 @login_required
 def profile(request):
-	items = { 'user': request.user, 'title': 'Profile', 'comments': 'n/a' } #request.user.comments_set.all() }
+	items = { 'user': request.user, 'title': 'Profile', 'comments': request.user.comment_set.all() }
 	return render(request, 'users/user_profile.html', items)
 
 @login_required

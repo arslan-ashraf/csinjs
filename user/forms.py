@@ -10,7 +10,7 @@ class Login_form(forms.Form):
 		attrs = { 'class': 'input-text', 'placeholder': 'Password'}))
 
 	class Meta:
-		model = user 
+		model = User 
 		fields = ['username', 'password']
 
 	def clean(self):
@@ -33,7 +33,7 @@ class Registration_form(UserCreationForm):
 		attrs = { 'class': 'input-text', 'placeholder': 'Confirm password'}))
 
 	class Meta:
-		model = user 
+		model = User 
 		fields = ['username', 'email', 'password1', 'password2']
 
 
@@ -47,7 +47,7 @@ class Edit_profile_form(UserChangeForm):
 		attrs = { 'class': 'input-text', 'placeholder': 'Password'}))
 
 	class Meta:
-		model = user 
+		model = User 
 		fields = ['username', 'email', 'password']
 
 	def clean_password(self):
@@ -67,7 +67,7 @@ class Change_password_form(PasswordChangeForm):
 		attrs = { 'class': 'input-text', 'placeholder': 'Confirm new password'}))
 
 	class Meta:
-		model = user 
+		model = User 
 		fields = ['old_password', 'new_password1', 'new_password2']
 
 	def clean_old_password(self):

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 from .forms import Login_form, Registration_form, Edit_profile_form, Change_password_form
-from ajax.models import Notification
+# from ajax.models import Notification
 
 def user_login(request):
 	form = Login_form(request.POST or None)
@@ -52,6 +52,7 @@ def profile(request):
 	items = { 'user': request.user, 'title': 'Profile', 'comments': 'n/a' } #request.user.comments_set.all() }
 	return render(request, 'users/user_profile.html', items)
 
+@login_required
 def change_password(request):
 	form = Change_password_form(data = request.POST or None, user = request.user)
 	if form.is_valid():
@@ -62,6 +63,12 @@ def change_password(request):
 	return render(request, 'users/user_form.html', items)
 
 @login_required
-def delete(request, friendly_title = None):
+def	delete(request):
+	user = request.user
+	user.delete()
+	return redirect('computer_science:home', permanent = True)
+
+@login_required
+def user_logout(request):
 	logout(request)
 	return redirect('computer_science:home', permanent = True)

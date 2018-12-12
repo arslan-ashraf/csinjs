@@ -1,0 +1,22 @@
+.user_form label {
+	display: none;
+}
+
+.user_form input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.user_form li {
+    margin: 0 auto;
+    padding: 5px;
+    background: #8c0000;
+    width: 500px;
+    color: white;
+    border-radius: 5px;
+}
+
+.button-class-a {
+	
+}

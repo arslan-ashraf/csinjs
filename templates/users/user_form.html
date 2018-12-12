@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	{{ title }}
+{% endblock title %}
+
+{% block css %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/user_form.css' %}">
+
+{% endblock css %}
+
+{% block main %}
+
+	<h1>{{ info }}</h1>
+
+	<form method="POST" class="user_form">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="{{ value }}" class='button'>
+	</form>
+
+{% endblock main %}
+
+{% block js %}
+
+{% endblock js %}

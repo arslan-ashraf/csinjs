@@ -15,7 +15,7 @@ def user_login(request):
 		if user:
 			login(request, user)
 			return redirect("user:profile", permanent = True)
-	items = { 'form': form, 'title': 'Login', 'btn_value': 'Login', 'info': 'Sign In' }
+	items = { 'form': form, 'title': 'Login', 'value': 'Login', 'info': 'Sign In' }
 	return render(request, 'users/user_form.html', items)
 
 def create(request):
@@ -29,7 +29,7 @@ def create(request):
 		if new_user:
 			login(request, new_user)
 		return redirect('user:profile', permanent = True)
-	items = { 'form': form, 'title': 'Register', 'btn_value': 'Sign Up', 'info': 'Register' }
+	items = { 'form': form, 'title': 'Register', 'value': 'Sign Up', 'info': 'Register' }
 	return render(request, 'users/user_form.html', items)
 
 @login_required
@@ -44,12 +44,12 @@ def update(request, friendly_title = None):
 	# 	# print('x' * 50)
 	# 	# print(x)
 	# 	# print('x' * 50)
-	items = { 'form': form, 'title': 'Edit Profile', 'btn_value': 'Save Changes', 'info': 'Edit Profile' }
+	items = { 'form': form, 'title': 'Edit Profile', 'value': 'Save Changes', 'info': 'Edit Profile' }
 	return render(request, 'users/user_form.html', items)
 
 @login_required
 def profile(request):
-	items = { 'user': request.user, 'title': 'Profile', 'comments': request.user.comments_set.all() }
+	items = { 'user': request.user, 'title': 'Profile', 'comments': 'n/a' } #request.user.comments_set.all() }
 	return render(request, 'users/user_profile.html', items)
 
 def change_password(request):
@@ -58,7 +58,7 @@ def change_password(request):
 		form.save()
 		update_session_auth_hash(request, form.user)
 		return redirect('users:profile', permanent = True)
-	items = { 'user': request.user, 'title': 'Change Password', 'btn_value': 'Save Password', 'info': 'Change Password' }
+	items = { 'user': request.user, 'title': 'Change Password', 'value': 'Save Password', 'info': 'Change Password' }
 	return render(request, 'users/user_form.html', items)
 
 @login_required

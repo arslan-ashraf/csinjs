@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	{{ title }}
+{% endblock title %}
+
+{% block css %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/user_form.css' %}">
+
+{% endblock css %}
+
+{% block main %}
+
+	<h1>Welcome {{ user.username }}</h1>
+
+
+{% endblock main %}
+
+{% block js %}
+
+{% endblock js %}

@@ -8,9 +8,6 @@ def home(request):
 	return render(request, 'home.html')
 
 def create(request):
-	print('()' * 50)
-	print('create')
-	print('()' * 50)
 	if not request.user.is_superuser:
 		return Http404
 	form = Algorithm_form(request.POST or None)
@@ -25,9 +22,6 @@ def create(request):
 	return render(request, 'algorithms/algorithm_form.html', items)
 
 def update(request, friendly_category = None, friendly_title = None):
-	print('|' * 50)
-	print(request)
-	print('|' * 50)
 	if not request.user.is_superuser:
 		return Http404
 	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
@@ -40,31 +34,23 @@ def update(request, friendly_category = None, friendly_title = None):
 						# friendly_title = updated_algorithm.friendly_title,
 						updated_algorithm.get_absolute_url,
 						permanent = True)
-		print('x' * 50)
-		print(x)
-		print('x' * 50)
-		# return x
 	items = { 'form': form, 'title': 'Update Algorithm', 'value': 'Update' }
 	return render(request, 'algorithms/algorithm_form.html', items)
 
 def categories(request):
 	algorithms = Algorithm.objects.all()
-	print('%' * 50)
-	print(algorithms.count())
-	print('%' * 50)
+	# print('%' * 50)
+	# print(algorithms.count())
+	# print('%' * 50)
 	hashmap = {}
 	for algorithm in algorithms:
 		hashmap[algorithm.category] = algorithm.friendly_category
 	items = { 'all_categories': hashmap, 'title': 'Categories of Algorithms' }
 	return render(request, 'algorithms/categories.html', items)
 
-
 def index(request, friendly_category = None):
 	type_of_algorithms = Algorithm.objects.filter(friendly_category = friendly_category)
 	items = { 'algorithms': type_of_algorithms, 'title': type_of_algorithms[0].category }
-	print('=' * 50)
-	print(type_of_algorithms)
-	print('=' * 50)
 	return render(request, 'algorithms/index.html', items)
 
 def show(request, friendly_category = None, friendly_title = None):
@@ -72,9 +58,9 @@ def show(request, friendly_category = None, friendly_title = None):
 	if not algorithm:
 		return Http404
 	items = { 'algorithm': algorithm[0], 'title': algorithm[0].title }
-	print('#' * 50)
-	print(algorithm[0])
-	print('#' * 50)
+	# print('#' * 50)
+	# print(algorithm[0])
+	# print('#' * 50)
 	return render(request, 'algorithms/show.html', items)
 
 def delete(request, friendly_category = None, friendly_title = None):

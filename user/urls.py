@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import login, create, update, delete, profile
+from .views import user_login, create, update, delete, profile
 
 app_name = 'user'
 

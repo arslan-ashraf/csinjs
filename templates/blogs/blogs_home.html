@@ -21,14 +21,14 @@
 
         {% if user.is_superuser %}
 
-            <a href="{% url 'blog:create' %}" class="blog_button">Create</a>
+            <a href="{% url 'blog:create' %}" class="blog-button">Create</a>
 
         {% endif %}
 
 		{% for blog in blogs %}
 
 			<div class='blog-in-list'>
-				<a href="{% url 'blog:show' blog.friendly_title %}" class="blog_button">
+				<a href="{% url 'blog:show' blog.friendly_title %}" class="blog-button">
                     {{ blog.title }}
                 </a>
                 <br/>

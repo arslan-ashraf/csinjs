@@ -1,7 +1,12 @@
+html {
+	margin-left: calc(100vw - 100%);
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	background: grey;
+	/*margin-right: calc(100vw - 100%);*/
 }
 
 .main {
@@ -98,7 +103,7 @@ a {
 	color: white;
 }
 
-.button {
+.button-class-b {
 	border-radius: 5px;
 	padding: 7px;
 	margin: 5px;
@@ -107,7 +112,7 @@ a {
 	font-size: 16px;
 }
 
-.button:hover {
+.button-class-b:hover {
 	background: white;
 	color: rgb(29, 39, 183);
 }

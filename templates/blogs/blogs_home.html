@@ -17,30 +17,30 @@
 		Articles
 	</h2>
 
-    <div class='specific-type-blogs'>
+	<div class="list_of_blogs">
 
-    	<div class="list_of_blogs">
+        {% if user.is_superuser %}
 
-            {% if user.is_superuser %}
+            <a href="{% url 'blog:create' %}" class="button-class-a">Create</a>
+    
+        {% endif %}
 
-                <a href="{% url 'blog:create' %}" class="button-class-a">Create</a>
-        
-            {% endif %}
+		{% for blog in blogs %}
 
-			{% for blog in blogs %}
-    			<div class='blog-in-list'>
-    				<a href="{% url 'blog:show' blog.friendly_title %}" class="button-class-a">{{ blog.title }}</a>
-                    <br/>
-                    {% if blog.image %}
-                        <a href="{% url 'blog:show' blog.friendly_title %}">
-                            <img src="{{ blog.image.url }}" width="160">
-                        </a>
-                    {% endif %}
-                    <br/>
-    			</div>
-    		{% endfor %}
-
-    	</div>
+			<div class='blog-in-list'>
+				<a href="{% url 'blog:show' blog.friendly_title %}" class="button-class-a">
+                    {{ blog.title }}
+                </a>
+                <br/>
+                {% if blog.image %}
+                    <a href="{% url 'blog:show' blog.friendly_title %}">
+                        <img src="{{ blog.image.url }}" width="160">
+                    </a>
+                {% endif %}
+                <br/>
+			</div>
+            
+		{% endfor %}
 
     </div>
 

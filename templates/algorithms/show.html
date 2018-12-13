@@ -30,8 +30,8 @@
 
 		{% if user.is_superuser %}
 
-			<a href="{% url 'computer_science:update' algorithm.friendly_category algorithm.friendly_title %}" class="button">Update</a>
-			<a href="{% url 'computer_science:delete' algorithm.friendly_category algorithm.friendly_title %}" class="button">Delete</a>
+			<a href="{% url 'computer_science:update' algorithm.friendly_category algorithm.friendly_title %}" class="button-class-a">Update</a>
+			<a href="{% url 'computer_science:delete' algorithm.friendly_category algorithm.friendly_title %}" class="button-class-a">Delete</a>
 	
 		{% endif %}
 

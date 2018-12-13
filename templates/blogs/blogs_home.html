@@ -17,44 +17,18 @@
 		Articles
 	</h2>
 
-<<<<<<< HEAD
-    <div class='specific-type-blogs'>
-
-    	<div class="list_of_blogs">
-
-            {% if user.is_superuser %}
-
-                <a href="{% url 'blog:create' %}" class="blog_button">Create</a>
-
-            {% endif %}
-
-			{% for blog in blogs %}
-    			<div class='blog-in-list'>
-    				<a href="{% url 'blog:show' blog.friendly_title %}" class="blog_button">{{ blog.title }}</a>
-                    <br/>
-                    {% if blog.image %}
-                        <a href="{% url 'blog:show' blog.friendly_title %}">
-                            <img src="{{ blog.image.url }}" width="160">
-                        </a>
-                    {% endif %}
-                    <br/>
-    			</div>
-    		{% endfor %}
-
-    	</div>
-=======
 	<div class="list_of_blogs">
 
         {% if user.is_superuser %}
 
-            <a href="{% url 'blog:create' %}" class="button-class-a">Create</a>
-    
+            <a href="{% url 'blog:create' %}" class="blog_button">Create</a>
+
         {% endif %}
 
 		{% for blog in blogs %}
 
 			<div class='blog-in-list'>
-				<a href="{% url 'blog:show' blog.friendly_title %}" class="button-class-a">
+				<a href="{% url 'blog:show' blog.friendly_title %}" class="blog_button">
                     {{ blog.title }}
                 </a>
                 <br/>
@@ -65,9 +39,8 @@
                 {% endif %}
                 <br/>
 			</div>
-            
+
 		{% endfor %}
->>>>>>> d7f80a960851196a329e0352389726d636164b43
 
     </div>
 

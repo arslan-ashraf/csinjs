@@ -2,7 +2,7 @@
 	margin-bottom: 20px;
 }
 
-.button-class-a {
+.blog-button {
 	border-radius: 5px;
 	border: 0;
 	padding: 7px;
@@ -12,7 +12,7 @@
 	font-size: 16px;
 }
 
-.button-class-a:hover {
+.blog-button:hover {
 	background: white;
 	color: rgb(29, 39, 183);
 	cursor: pointer;

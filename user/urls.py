@@ -4,18 +4,7 @@ from django.contrib.auth import views as auth_views
 
 app_name = 'user'
 
-# urlpatterns = [
-#     url(r'^user/login/$', user_login, name = 'user_login'),
-#     url(r'^user/create/$', create, name = 'create'),
-#     url(r'^user/update/$', update, name = 'update'),
-#     url(r'^user/logout/$', LogoutView.as_view(template_name = 'home.html'), name = 'user_logout'),
-#     url(r'^user/change-password/$', change_password, name = 'change_password'),
-# 	url(r'^user/profile/$', profile, name = 'profile'),
-# 	url(r'^user/delete/$', delete, name = 'delete'),
-# ]
-
 urlpatterns = [
-	# url(r'^login/$', auth_views.LoginView.as_view(template_name = 'users/user_form.html')),
 	url(r'^user/login/$', user_login, name = 'user_login'),
     url(r'^user/create/$', create, name = 'create'),
     url(r'^user/update/$', update, name = 'update'),

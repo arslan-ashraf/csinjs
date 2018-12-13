@@ -57,10 +57,12 @@ def show(request, friendly_category = None, friendly_title = None):
 	algorithm = Algorithm.objects.filter(friendly_title = friendly_title)
 	if not algorithm:
 		return Http404
-	items = { 'algorithm': algorithm[0], 'title': algorithm[0].title }
 	# print('#' * 50)
-	# print(algorithm[0])
+	# print(algorithm[0].comment_set.all()[0].content)
 	# print('#' * 50)
+	items = { 'algorithm': algorithm[0], 
+			  'title': algorithm[0].title, 
+			  'comments': algorithm[0].comment_set.all() }
 	return render(request, 'algorithms/show.html', items)
 
 def delete(request, friendly_category = None, friendly_title = None):
@@ -80,5 +82,3 @@ def search(request):
 
 	items = { 'results': algorithms }
 	return render(request, 'algorithms/search_results.html', items)
-
-

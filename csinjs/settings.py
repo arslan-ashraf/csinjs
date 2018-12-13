@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'computer_science',
     'blog',
     'user',
+    'comments',
 ]
 
 MIDDLEWARE = [
@@ -129,18 +130,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGOUT_REDIRECT_URL = '/'
-
-#os.path.join(os.path.dirname(BASE_DIR), 'static_files')
-
-# 'home/arslan/static_files'
-
-# os.path.join(BASE_DIR, 'static_files')
-
-# os.path.join(os.path.dirname(BASE_DIR), 'static_files')
-
-# 'home/arslan/csinjs/home/arslan/csinjs/static'
-
-# print('x' * 50)
-# print(os.path.join(BASE_DIR, 'static_files'))
-# print(os.path.join(os.path.dirname(BASE_DIR), 'static_files'))
-# print('x' * 50)

@@ -22,3 +22,41 @@
 	font-family: monospace;
 	font-size: 16px;
 }
+
+.single-comment {
+	width: 725px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.comment-username {
+	margin-bottom: 0;
+}
+
+.comment-content {
+	margin-top: 10px;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+.comment-count {
+	width: 725px;
+	text-align: left;
+}
+
+.button-class-a {
+	border-radius: 5px;
+	border: 0;
+	padding: 7px;
+	margin: 5px;
+	background: rgb(29, 39, 183);
+	color: white;
+	font-size: 16px;
+}
+
+.button-class-a:hover {
+	background: white;
+	color: rgb(29, 39, 183);
+	cursor: pointer;
+}

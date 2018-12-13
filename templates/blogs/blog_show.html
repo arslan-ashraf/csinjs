@@ -22,12 +22,24 @@
 		{% endif %}
 		<div class="blog-code">{{ blog.content|safe }}</div>
 
+		<br>
+
+		<div class="comment-count">Comments:</div>
+
+		{% for comment in comments %}
+			<div class="single-comment">
+				<p class="comment-username"><b>{{ comment.user }}</b> {{ comment.created_at|timesince }}</p>
+				<p class="comment-content">{{ comment.content }}</p>
+			</div>
+				
+		{% endfor %}
+
 		<br />
 
 		{% if user.is_superuser %}
 
-			<a href="{% url 'blog:update' blog.friendly_title %}" class="button">Update</a>
-			<a href="{% url 'blog:delete' blog.friendly_title %}" class="button">Delete</a>
+			<a href="{% url 'blog:update' blog.friendly_title %}" class="button-class-a">Update</a>
+			<a href="{% url 'blog:delete' blog.friendly_title %}" class="button-class-a">Delete</a>
 
 		{% endif %}
 

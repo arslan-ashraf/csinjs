@@ -39,3 +39,8 @@
 	border-radius: 3px;
 	padding: 5px;
 }
+
+.comment-count {
+	width: 725px;
+	text-align: left;
+}

@@ -1,3 +1,8 @@
 .article {
 	text-align: left !important;
 }
+
+.comment-count {
+	text-align: left;
+	width: 725;
+}

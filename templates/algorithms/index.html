@@ -27,7 +27,7 @@
 
     		{% for algorithm in algorithms %}
     			<div class='algorithm-button'>
-    				<a href="{% url 'computer_science:title' algorithm.friendly_category algorithm.friendly_title %}" class="button">{{ algorithm.title }}</a>
+    				<a href="{% url 'computer_science:title' algorithm.friendly_category algorithm.friendly_title %}" class="button-class-b">{{ algorithm.title }}</a>
     			</div>
     		{% endfor %}
 

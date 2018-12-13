@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from .models import Algorithm
 from .forms import Algorithm_form
 from django.db.models import Count
+from comments.models import Comment 
 
 def home(request):
 	return render(request, 'home.html')
@@ -62,7 +63,7 @@ def show(request, friendly_category = None, friendly_title = None):
 	# print('#' * 50)
 	items = { 'algorithm': algorithm[0], 
 			  'title': algorithm[0].title, 
-			  'comments': algorithm[0].comment_set.all() }
+			  'comments': 'n/a' } # algorithm[0].comment_set.all() }
 	return render(request, 'algorithms/show.html', items)
 
 def delete(request, friendly_category = None, friendly_title = None):

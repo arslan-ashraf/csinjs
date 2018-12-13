@@ -8,7 +8,7 @@
 {% block css %}
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/list_of_blogs.css' %}">
-	
+
 {% endblock css %}
 
 {% block main %}
@@ -23,8 +23,8 @@
 
             {% if user.is_superuser %}
 
-                <a href="{% url 'blog:create' %}" class="button">Create</a>
-        
+                <a href="{% url 'blog:create' %}" class="blog_button">Create</a>
+
             {% endif %}
 
 			{% for blog in blogs %}

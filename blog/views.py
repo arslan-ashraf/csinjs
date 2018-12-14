@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from .models import Blog
 from .forms import Blog_form
+from comments.forms import Comment_form
 
 def blogs_home(request):
 	blogs = Blog.objects.all()
@@ -50,7 +51,16 @@ def show(request, friendly_title = None):
 	blog = Blog.objects.filter(friendly_title = friendly_title)
 	if not Blog:
 		return Http404
-	items = { 'blog': blog[0], 'title': blog[0].title }
+	form = Comment_form(request.POST or None)
+	if form.is_valid():
+	    new_comment = form.save(commit = False)
+	    new_comment.save()
+	    return redirect(algorithm, algorithm.get_absolute_url, permanent = True)
+	items = { 'blog': blog[0],
+	          'title': blog[0].title,
+	          'comments': blog[0].comment_set.all(),
+	          'form': form,
+	          'value': 'Submit Comment', }
 	# print('#' * 50)
 	# print(Blog[0])
 	# print('#' * 50)

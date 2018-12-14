@@ -2,7 +2,37 @@
 	text-align: left !important;
 }
 
-.comment-count {
+.single-comment {
+	width: 725px;
+	margin: 0 auto;
 	text-align: left;
-	width: 725;
+}
+
+.comment-username {
+	margin-bottom: 0;
+}
+
+.comment-content {
+	margin-top: 10px;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+.comment-count {
+	width: 725px;
+	text-align: left;
+	margin: 0;
+}
+
+.comment_form label {
+    display: none;
+}
+
+.comment_form textarea {
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 14px;
+	width: 600px;
+	border: none;
 }

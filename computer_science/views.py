@@ -3,7 +3,8 @@ from django.http import HttpResponse, Http404
 from .models import Algorithm
 from .forms import Algorithm_form
 from django.db.models import Count
-from comments.models import Comment 
+from comments.models import Comment
+from comments.forms import Comment_form
 
 def home(request):
 	return render(request, 'home.html')
@@ -58,12 +59,19 @@ def show(request, friendly_category = None, friendly_title = None):
 	algorithm = Algorithm.objects.filter(friendly_title = friendly_title)
 	if not algorithm:
 		return Http404
+	form = Comment_form(request.POST or None)
+	if form.is_valid():
+	    new_comment = form.save(commit = False)
+	    new_comment.save()
+	    return redirect(algorithm, algorithm.get_absolute_url, permanent = True)
 	# print('#' * 50)
 	# print(algorithm[0].comment_set.all()[0].content)
 	# print('#' * 50)
-	items = { 'algorithm': algorithm[0], 
-			  'title': algorithm[0].title, 
-			  'comments': 'n/a' } # algorithm[0].comment_set.all() }
+	items = { 'algorithm': algorithm[0],
+			  'title': algorithm[0].title,
+			  'comments': algorithm[0].comment_set.all(),
+			  'form': form,
+			  'value': 'Submit Comment', }
 	return render(request, 'algorithms/show.html', items)
 
 def delete(request, friendly_category = None, friendly_title = None):

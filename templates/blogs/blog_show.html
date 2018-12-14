@@ -31,7 +31,7 @@
 				<p class="comment-username"><b>{{ comment.user }}</b> {{ comment.created_at|timesince }}</p>
 				<p class="comment-content">{{ comment.content }}</p>
 			</div>
-				
+
 		{% endfor %}
 
 		<br />
@@ -39,9 +39,14 @@
 		{% if user.is_superuser %}
 
 			<a href="{% url 'blog:update' blog.friendly_title %}" class="button-class-a">Update</a>
-			<a href="{% url 'blog:delete' blog.friendly_title %}" class="button-class-a">Delete</a>
 
 		{% endif %}
+
+		<form method="POST" class="comment_form", enctype="multipart/form-data">
+    		{% csrf_token %}
+    		{{ form.as_p }}
+    		<input type="submit" value="{{ value }}" class='button-class-a'>
+	    </form>
 
 	</div>
 

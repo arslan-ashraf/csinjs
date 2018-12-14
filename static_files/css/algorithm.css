@@ -43,6 +43,8 @@
 .comment-count {
 	width: 725px;
 	text-align: left;
+	margin: 0 auto;
+
 }
 
 .button-class-a {
@@ -59,4 +61,16 @@
 	background: white;
 	color: rgb(29, 39, 183);
 	cursor: pointer;
+}
+
+.comment_form label {
+    display: none;
+}
+
+.comment_form textarea {
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 14px;
+	width: 600px;
+	border: none;
 }

@@ -19,6 +19,7 @@ def create(request):
 	form = Blog_form(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		new_blog = form.save(commit = False)
+
 		print(new_blog)
 		new_blog.save()
 		return redirect(new_blog,
@@ -54,6 +55,8 @@ def show(request, friendly_title = None):
 	form = Comment_form(request.POST or None)
 	if form.is_valid():
 	    new_comment = form.save(commit = False)
+	    new_comment.user = request.user
+	    new_comment.blog = blog
 	    new_comment.save()
 	    return redirect(algorithm, algorithm.get_absolute_url, permanent = True)
 	items = { 'blog': blog[0],

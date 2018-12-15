@@ -62,6 +62,8 @@ def show(request, friendly_category = None, friendly_title = None):
 	form = Comment_form(request.POST or None)
 	if form.is_valid():
 	    new_comment = form.save(commit = False)
+	    new_comment.user = request.user
+	    new_comment.algorithm = algorithm
 	    new_comment.save()
 	    return redirect(algorithm, algorithm.get_absolute_url, permanent = True)
 	# print('#' * 50)

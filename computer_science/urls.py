@@ -12,5 +12,5 @@ urlpatterns = [
 	url(r'^algorithms/(?P<friendly_category>[-\w]+)/(?P<friendly_title>[-\w]+)/edit/$', update, name = 'update'),
 	url(r'^algorithms/(?P<friendly_category>[-\w]+)/(?P<friendly_title>[-\w]+)/delete/$', delete, name = 'delete'),
     url(r'^algorithm/create/$', create, name = 'create'),
-   
+
 ]

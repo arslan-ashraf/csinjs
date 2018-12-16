@@ -85,6 +85,45 @@
 				    }
 				})
 
+				$('.like-button').on('click', function(){
+				    let like_button = $(this)
+					$.ajax({
+						method: 'GET',
+						url: $(location).attr('href') + 'like/',
+						dataType: 'html',
+						success: function(data){
+							let parsed_data = JSON.parse(data)
+							$('.like-message').text(parsed_data)
+							$('.like-counts').text(parse_data['likes'])
+							if (parse_data['current_user_likes']) == 'Unlike'){
+							    like_button.css('color', rgba(255, 0, 0, 1))
+							}   else {
+							    like_button.css('color', rgba(255, 0, 0, 0.7))
+							}
+						}
+					})
+				})
+
+				function notification_ajax(){
+				    $.ajax({
+						method: 'GET',
+						url: '/user/notifications/',
+						dataType: 'html',
+						success: function(data){
+							let parsed_data = JSON.parse(data)
+							let notify = '', n_count = 0
+							for(let i = 0; i < parse_data.length; i++){
+							    n_count += 1
+							    notify += "<a class='dropdown-link' href='" + `${parsed_data[i].url}` + "'><li>" + `${parsed_data[i].sender} ${parsed_data[i].action} ${parsed_data[i].body}` + "</li></a>"
+							}
+							$('.notification-count').text(parsed_data)
+							$('.dropdown').append(notifiy)
+						}
+					})
+				}
+
+				notification_ajax()
+
 			</script>
 
 			{% block js %} {% endblock js %}

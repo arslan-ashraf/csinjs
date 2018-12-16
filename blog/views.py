@@ -52,25 +52,53 @@ def show(request, friendly_title = None):
 	blog = Blog.objects.filter(friendly_title = friendly_title)
 	if not Blog:
 		return Http404
+	if (request.method == 'POST'):
+	    new_comment = Comment.objects.create(user = request.user,
+	                                         blog = blog,
+	                                         content = request.POST['typed_comment'],
+	                                        )
+	    for each_user in algorithm.users.all():
+	        if each_user == request.user:
+	            continue
+	        Notification.objects.create(sender = request.user.username,
+                                        receiver = each_user.username,
+                                        action = 'posted a',
+                                        body = 'comment',
+                                        url = blog.get_absolute_url()
+                                        )
+        blog.users.add(request.user)
+        return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	form = Comment_form(request.POST or None)
-	if form.is_valid():
-	    new_comment = form.save(commit = False)
-	    new_comment.user = request.user
-	    new_comment.blog = blog
-	    new_comment.save()
-	    return redirect(algorithm, algorithm.get_absolute_url, permanent = True)
+	current_user_likes = False
+    like_or_unlike = 'Like'
+    if request.user.is_authenticated:
+        if request.user in blog.likes.all():
+            current_user_likes = True
+        if current_user_likes:
+            like_or_unlike = 'Unlike'
 	items = { 'blog': blog[0],
 	          'title': blog[0].title,
 	          'comments': blog[0].comment_set.all(),
 	          'form': form,
-	          'value': 'Submit Comment', }
+	          'value': 'Submit Comment',
+	          'like_or_unlike': like_or_unlike,}
 	# print('#' * 50)
 	# print(Blog[0])
 	# print('#' * 50)
 	return render(request, 'blogs/blog_show.html', items)
 
-def blog_like(request):
-    return
+@login_required
+def blog_like(request, friendly_title = None):
+    blog = get_object_or_404(Blog, friendly_title = friendly_title)
+    current_user_likes = None
+    if request.user in blog.likes.all():
+        blog.likes.remove(request.user
+        current_user_likes = 'Like'
+    else:
+        blog.likes.add(request.user)
+        current_user_likes = 'Unlike'
+    items = { 'likes': str(blog.likes.all().count()), 'current_user_likes': str(current_user_likes) }
+    return JsonResponse(items)
 
 def delete(request, friendly_title = None):
 	if not request.user.is_superuser:

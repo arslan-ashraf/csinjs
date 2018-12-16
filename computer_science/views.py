@@ -64,29 +64,48 @@ def show(request, friendly_category = None, friendly_title = None):
 	                                         algorithm = algorithm,
 	                                         content = request.POST['typed_comment'],
 	                                        )
-	    for each_user in algorithms.users.all():
+	    for each_user in algorithm.users.all():
 	        if each_user == request.user:
 	            continue
 	        Notification.objects.create(sender = request.user.username,
                                         receiver = each_user.username,
                                         action = 'posted a',
                                         body = 'comment',
-                                        url = algorithm.get_absolute_url(),)
+                                        url = algorithm.get_absolute_url()
+                                        )
         algorithm.users.add(request.user)
         return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	# print('#' * 50)
 	# print(algorithm[0].comment_set.all()[0].content)
 	# print('#' * 50)
 	form = Comment_form(request.POST or None)
+	current_user_likes = False
+    like_or_unlike = 'Like'
+    if request.user.is_authenticated:
+        if request.user in algorithm.likes.all():
+            current_user_likes = True
+        if current_user_likes:
+            like_or_unlike = 'Unlike'
 	items = { 'algorithm': algorithm[0],
 			  'title': algorithm[0].title,
 			  'comments': algorithm[0].comment_set.all(),
 			  'form': form,
-			  'value': 'Submit Comment', }
+			  'value': 'Submit Comment',
+			  'like_or_unlike': like_or_unlike, }
 	return render(request, 'algorithms/show.html', items)
 
-def algorithm_like(request):
-    return
+@login_required
+def algorithm_like(request, friendly_category = None, friendly_title = None):
+    algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
+    current_user_likes = None
+    if request.user in algorithm.likes.all():
+        algorithm.likes.remove(request.user
+        current_user_likes = 'Like'
+    else:
+        algorithm.likes.add(request.user)
+        current_user_likes = 'Unlike'
+    items = { 'likes': str(algorithm.likes.all().count()), 'current_user_likes': str(current_user_likes) }
+    return JsonResponse(items)
 
 def delete(request, friendly_category = None, friendly_title = None):
 	if not request.user.is_superuser:

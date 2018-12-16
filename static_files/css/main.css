@@ -185,3 +185,61 @@ a {
 .even-row .cell:nth-child(even){
 	background: rgb(255, 236, 214);
 }
+
+.like {
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    color: rgba(255, 0, 0, .7);
+}
+
+.like:hover {
+    color: rgba(55, 0, 0, 1);
+}
+
+.like-counts {
+    margin-right 5px;
+    font-size: 20px;
+}
+
+.like-unlike-message {
+    visibility: hidden;
+    background: grey;
+    text-align: center;
+    padding: 5px 0;
+    position: absolutes;
+    z-index: 5;
+    top: 150%;
+    left: 50%;
+    margin-left: -45px;
+    border-radius: 6px;
+    color: white;
+}
+
+.like-unlike-message:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent grey transparent;
+}
+
+.like-message {
+    width: 80px;
+}
+
+.sigin-message {
+    width: 140px;
+    margin-left: -75px;
+}
+
+.like:hover .like-message {
+    visibility: visible;
+}
+
+.like:hover .signin-message {
+    visibility: visible;
+}

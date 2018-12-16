@@ -13,3 +13,20 @@
 	color: rgb(29, 39, 183);
 	cursor: pointer;
 }
+
+.list-of-notifications {
+	width: 725px;
+	text-align: left;
+	margin-left: 100px;
+}
+
+.notification-link {
+	background: #dcd8d8;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.notification-link:hover {
+	background: rgb(58, 63, 132);
+	color: white;
+}

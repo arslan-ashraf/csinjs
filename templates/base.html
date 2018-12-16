@@ -116,10 +116,10 @@
 							let notify = '', n_count = 0
 							for(let i = 0; i < parsed_data.length; i++){
 							    n_count += 1
-							    notify += "<a class='dropdown-link' href='" + `${parsed_data[i].url}` + "'><li>" + `${parsed_data[i].sender} ${parsed_data[i].action} ${parsed_data[i].body}` + "</li></a>"
+							    notify += "<a class='notification-link' href='" + `${parsed_data[i].url}` + "'><li>" + `${parsed_data[i].sender} ${parsed_data[i].action} ${parsed_data[i].body}` + "</li></a>"
 							}
 							$('.notification-count').text(parsed_data)
-							$('.dropdown').append(notify)
+							$('.list-of-notifications').append(notify)
 						}
 					})
 				}

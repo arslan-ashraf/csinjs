@@ -9,6 +9,7 @@ class Blog(models.Model):
 	friendly_title = models.SlugField(unique = False, default = None)
 	image = models.FileField(null = True, blank = True)
 	content = models.TextField()
+	users = models.ManyToManyField(User)
 	likes = models.ManyToManyField(User, blank = True, related_name = 'blog_likes')
 	created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True, auto_now_add = False)

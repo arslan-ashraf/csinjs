@@ -10,6 +10,7 @@ class Algorithm(models.Model):
 	category = models.CharField(max_length = 300, default = None)
 	friendly_category = models.SlugField(unique = False, default = None)
 	code = models.TextField()
+	users = models.ManyToManyField(User)
 	likes = models.ManyToManyField(User, blank = True, related_name = 'algorithm_likes')
 	created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True, auto_now_add = False)

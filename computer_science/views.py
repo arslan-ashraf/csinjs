@@ -59,16 +59,26 @@ def show(request, friendly_category = None, friendly_title = None):
 	algorithm = Algorithm.objects.filter(friendly_title = friendly_title)
 	if not algorithm:
 		return Http404
-	form = Comment_form(request.POST or None)
-	if form.is_valid():
-	    new_comment = form.save(commit = False)
-	    new_comment.user = request.user
-	    new_comment.algorithm = algorithm
-	    new_comment.save()
-	    return redirect(algorithm, algorithm.get_absolute_url, permanent = True)
+	if (request.method == 'POST'):
+	    new_comment = Comment.objects.create(user = request.user,
+	                                         algorithm = algorithm,
+	                                         content = request.POST['typed_comment'],
+	                                        )
+	    for each_user in algorithms.users.all():
+	        if each_user == request.user:
+	            continue
+	            Notification.objects.create(sender = request.user.username,
+                                receiver = each_user.username,
+                                action = 'posted a',
+                                body = 'comment',
+                                url = algorithm.get_absolute_url(),
+                                )
+        algorithm.users.add(request.user)
+        return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	# print('#' * 50)
 	# print(algorithm[0].comment_set.all()[0].content)
 	# print('#' * 50)
+	form = Comment_form(request.POST or None)
 	items = { 'algorithm': algorithm[0],
 			  'title': algorithm[0].title,
 			  'comments': algorithm[0].comment_set.all(),
@@ -90,6 +100,5 @@ def search(request):
 	if len(searched_text) == 0:
 		return render(request, 'algorithms/search_results.html', { 'results': []})
 	algorithms = Algorithm.objects.filter(title__icontains = searched_text)[:5]
-
 	items = { 'results': algorithms }
 	return render(request, 'algorithms/search_results.html', items)

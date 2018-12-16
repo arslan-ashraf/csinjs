@@ -13,3 +13,10 @@ class Comment(models.Model):
 	def __str__(self):
 		return str(self.user.username)
 
+class Notification(models.Model):
+    sender = models.ForeignKey(User, on_delete = models.CASCADE)
+    receiver = models.ForeignKey(User, on_delete = models.CASCADE)
+    type = models.CharField(max_length = 300)
+    action = models.CharField(max_length = 300)
+    body = models.CharField(max_length = 300)
+    url = models.CharField(max_length = 300)

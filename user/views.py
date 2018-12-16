@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 from .forms import Login_form, Registration_form, Edit_profile_form, Change_password_form
+from comments.models import Comment, Notification
 
 def user_login(request):
 	form = Login_form(request.POST or None)
@@ -74,4 +75,15 @@ def	delete(request):
 	return redirect('computer_science:home', permanent = True)
 
 def user_notifications(request):
-    return
+    if not request.user.is_authenticated:
+        return JsonResponse([], safe = False)
+    all_notifications_of_this_user = Notification.objects.filter(receiver = request.user)
+    data_arr = []
+    for i in range(0, len(all_notifications_of_this_user)):
+        data = {}
+        data['sender'] = all_notifications_of_this_user.sender
+        data['action'] = all_notifications_of_this_user.action
+        data['body'] = all_notifications_of_this_user.body
+        data['url'] = all_notifications_of_this_user.url
+        data_arr.append(data)
+    return JsonResponse(data_arr, safe = False)

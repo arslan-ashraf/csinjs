@@ -57,7 +57,6 @@
 							'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val()
 						},
 						success: function(data){
-							console.log(data)
 							$('#search-results').html(data)
 						}
 					})
@@ -110,14 +109,15 @@
 						url: '/user/notifications/',
 						dataType: 'html',
 						success: function(data){
+						    console.log(data)
 							let parsed_data = JSON.parse(data)
 							let notify = '', n_count = 0
-							for(let i = 0; i < parse_data.length; i++){
+							for(let i = 0; i < parsed_data.length; i++){
 							    n_count += 1
 							    notify += "<a class='dropdown-link' href='" + `${parsed_data[i].url}` + "'><li>" + `${parsed_data[i].sender} ${parsed_data[i].action} ${parsed_data[i].body}` + "</li></a>"
 							}
 							$('.notification-count').text(parsed_data)
-							$('.dropdown').append(notifiy)
+							$('.dropdown').append(notify)
 						}
 					})
 				}

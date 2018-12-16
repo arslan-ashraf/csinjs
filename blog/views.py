@@ -51,7 +51,7 @@ def update(request, friendly_title = None):
 	return render(request, 'blogs/blog_form.html', items)
 
 def show(request, friendly_title = None):
-	blog = Blog.objects.filter(friendly_title = friendly_title)
+	blog = get_object_or_404(Blog, friendly_title = friendly_title)
 	if not Blog:
 		return Http404
 	if (request.method == 'POST'):
@@ -70,9 +70,9 @@ def show(request, friendly_title = None):
 	        current_user_likes = True
 	    if current_user_likes:
 	        like_or_unlike = 'Unlike'
-	items = { 'blog': blog[0],
-	          'title': blog[0].title,
-	          'comments': blog[0].comment_set.all(),
+	items = { 'blog': blog,
+	          'title': blog.title,
+	          'comments': blog.comment_set.all(),
 	          'form': form,
 	          'value': 'Submit Comment',
 	          'like_or_unlike': like_or_unlike,}

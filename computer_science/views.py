@@ -57,7 +57,7 @@ def index(request, friendly_category = None):
 	return render(request, 'algorithms/index.html', items)
 
 def show(request, friendly_category = None, friendly_title = None):
-	algorithm = Algorithm.objects.filter(friendly_title = friendly_title)
+	algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
 	if not algorithm:
 		return Http404
 	if (request.method == 'POST'):
@@ -78,9 +78,9 @@ def show(request, friendly_category = None, friendly_title = None):
 	        current_user_likes = True
 	    if current_user_likes:
 	        like_or_unlike = 'Unlike'
-	items = { 'algorithm': algorithm[0],
-			  'title': algorithm[0].title,
-			  'comments': algorithm[0].comment_set.all(),
+	items = { 'algorithm': algorithm,
+			  'title': algorithm.title,
+			  'comments': algorithm.comment_set.all(),
 			  'form': form,
 			  'value': 'Submit Comment',
 			  'like_or_unlike': like_or_unlike, }

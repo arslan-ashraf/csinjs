@@ -94,8 +94,8 @@
 						success: function(data){
 							let parsed_data = JSON.parse(data)
 							$('.like-message').text(parsed_data)
-							$('.like-counts').text(parse_data['likes'])
-							if (parse_data['current_user_likes']) == 'Unlike'){
+							$('.like-counts').text(parsed_data['likes'])
+							if (parsed_data['current_user_likes'] == 'Unlike'){
 							    like_button.css('color', rgba(255, 0, 0, 1))
 							}   else {
 							    like_button.css('color', rgba(255, 0, 0, 0.7))

@@ -4,6 +4,8 @@ from django.http import HttpResponse, Http404
 from .models import Blog
 from .forms import Blog_form
 from comments.forms import Comment_form
+from django.contrib.auth.decorators import login_required
+from comments.models import Comment, Notification
 
 def blogs_home(request):
 	blogs = Blog.objects.all()
@@ -53,29 +55,21 @@ def show(request, friendly_title = None):
 	if not Blog:
 		return Http404
 	if (request.method == 'POST'):
-	    new_comment = Comment.objects.create(user = request.user,
-	                                         blog = blog,
-	                                         content = request.POST['typed_comment'],
-	                                        )
+	    new_comment = Comment.objects.create(user = request.user, blog = blog, content = request.POST['typed_comment'])
 	    for each_user in algorithm.users.all():
 	        if each_user == request.user:
 	            continue
-	        Notification.objects.create(sender = request.user.username,
-                                        receiver = each_user.username,
-                                        action = 'posted a',
-                                        body = 'comment',
-                                        url = blog.get_absolute_url()
-                                        )
-        blog.users.add(request.user)
-        return render(request, 'comments/new_comment.html', { 'comment': new_comment })
+	        Notification.objects.create(sender = request.user.username, receiver = each_user.username, action = 'posted a', body = 'comment', url = blog.get_absolute_url())
+	    blog.users.add(request.user)
+	    return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	form = Comment_form(request.POST or None)
 	current_user_likes = False
-    like_or_unlike = 'Like'
-    if request.user.is_authenticated:
-        if request.user in blog.likes.all():
-            current_user_likes = True
-        if current_user_likes:
-            like_or_unlike = 'Unlike'
+	like_or_unlike = 'Like'
+	if request.user.is_authenticated:
+	    if request.user in blog.likes.all():
+	        current_user_likes = True
+	    if current_user_likes:
+	        like_or_unlike = 'Unlike'
 	items = { 'blog': blog[0],
 	          'title': blog[0].title,
 	          'comments': blog[0].comment_set.all(),
@@ -92,7 +86,7 @@ def blog_like(request, friendly_title = None):
     blog = get_object_or_404(Blog, friendly_title = friendly_title)
     current_user_likes = None
     if request.user in blog.likes.all():
-        blog.likes.remove(request.user
+        blog.likes.remove(request.user)
         current_user_likes = 'Like'
     else:
         blog.likes.add(request.user)

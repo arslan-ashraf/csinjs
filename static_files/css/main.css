@@ -187,44 +187,49 @@ a {
 }
 
 .like {
+    display: inline-block;
     font-size: 30px;
     cursor: pointer;
     position: relative;
     color: rgba(255, 0, 0, .3);
 }
 
+
 .like:hover {
     color: rgba(225, 0, 0, 1);
 }
 
+
 .like-counts {
-    margin-left:; 5px;
+    margin-left: 5px;
     font-size: 20px;
 }
 
 .like-unlike-message {
     visibility: hidden;
-    background: grey;
-    text-align: center;
-    padding: 5px 0;
-    position: absolutes;
-    z-index: 5;
-    top: 150%;
-    left: 50%;
-    margin-left: -45px;
-    border-radius: 6px;
+    width: 80px;
+    background: black;
     color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 150%;
+    margin-left: -60px;
+    font-size: 16px;
 }
 
-.like-unlike-message:after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent grey transparent;
+.like-unlike-message::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 52%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
 }
 
 .like-message {
@@ -236,7 +241,7 @@ a {
     margin-left: -75px;
 }
 
-.like:hover .like-message {
+.like:hover .like-unlike-message {
     visibility: visible;
 }
 

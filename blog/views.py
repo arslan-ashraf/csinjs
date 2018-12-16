@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from .models import Blog
 from .forms import Blog_form
 from comments.forms import Comment_form
@@ -81,8 +81,9 @@ def show(request, friendly_title = None):
 	# print('#' * 50)
 	return render(request, 'blogs/blog_show.html', items)
 
-@login_required
 def blog_like(request, friendly_title = None):
+    if not request.user.is_authenticated:
+        return JsonResponse([], safe = False)
     blog = get_object_or_404(Blog, friendly_title = friendly_title)
     current_user_likes = None
     if request.user in blog.likes.all():

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from .models import Algorithm
 from .forms import Algorithm_form
 from django.db.models import Count
@@ -67,9 +67,6 @@ def show(request, friendly_category = None, friendly_title = None):
 	        Notification.objects.create(sender = request.user, receiver = each_user, action = 'posted a', body = 'comment', url = algorithm.get_absolute_url())
 	    algorithm.users.add(request.user)
 	    return render(request, 'comments/new_comment.html', { 'comment': new_comment })
-	# print('#' * 50)
-	# print(algorithm[0].comment_set.all()[0].content)
-	# print('#' * 50)
 	form = Comment_form(request.POST or None)
 	current_user_likes = False
 	like_or_unlike = 'Like'
@@ -86,8 +83,12 @@ def show(request, friendly_category = None, friendly_title = None):
 			  'like_or_unlike': like_or_unlike, }
 	return render(request, 'algorithms/show.html', items)
 
-@login_required
 def algorithm_like(request, friendly_category = None, friendly_title = None):
+    if not request.user.is_authenticated:
+        # print('#' * 50)
+        # print('user not signed in')
+        # print('#' * 50)
+        return JsonResponse([], safe = False)
     algorithm = get_object_or_404(Algorithm, friendly_title = friendly_title)
     current_user_likes = None
     if request.user in algorithm.likes.all():

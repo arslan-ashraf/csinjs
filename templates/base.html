@@ -90,14 +90,17 @@
 						url: $(location).attr('href') + 'like/',
 						dataType: 'html',
 						success: function(data){
-							let parsed_data = JSON.parse(data)
-							$('.like-message').text(parsed_data['current_user_likes'])
-							$('.like-counts').text(parsed_data['likes'])
-							if (parsed_data['current_user_likes'] == 'Unlike'){
-							    like_button.css('color', rgba(255, 0, 0, 1))
-							}   else {
-							    like_button.css('color', rgba(255, 0, 0, 0.7))
-							}
+                            // console.log(data)
+                            if (data.length){
+    							let parsed_data = JSON.parse(data)
+    							$('.like-message').text(parsed_data['current_user_likes'])
+    							$('.like-counts').text(parsed_data['likes'])
+    							if (parsed_data['current_user_likes'] == 'Unlike'){
+    							    like_button.css({'color': 'rgba(255, 0, 0, 1)'})
+    							}   else {
+    							    like_button.css({'color': 'rgba(255, 0, 0, 0.7)'})
+    							}
+                            }
 						}
 					})
 				})
@@ -108,6 +111,7 @@
 						url: '/user/notifications/',
 						dataType: 'html',
 						success: function(data){
+						  //  console.log(data)
 							let parsed_data = JSON.parse(data)
 							let notify = '', n_count = 0
 							for(let i = 0; i < parsed_data.length; i++){

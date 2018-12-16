@@ -18,7 +18,14 @@
 		<div class="algorithm-code">{{ algorithm.code|safe }}</div>
 		<br />
 
-		<a class='like like-button'>&hearts; </a><span class="like-counts">{{ algorithm.likes.count }}</span>
+		<a class='like like-button'>
+		    &hearts;
+		    <span class="like-unlike-message">{{ like_or_unlike }}</span>
+		</a>
+
+		<span class="like-counts">{{ algorithm.likes.count }}</span>
+
+        <br>
 
 		{% if user.is_superuser %}
 
@@ -35,7 +42,7 @@
     	    </form>
 
 	    {% else %}
-	        <a href="{% url 'user:user_login' %}" class="button-class-a">Log In</a>
+	        <a href="{% url 'user:user_login' %}" class="button-class-a">Sign in to like and comment</a>
 	    {% endif %}
 
 	    <div class="comment-count">Comments:</div>

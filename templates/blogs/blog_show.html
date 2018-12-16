@@ -24,7 +24,12 @@
 
 		<br />
 
-        <a class='like like-button'>&hearts;</a><span class="like-counts">{{ blog.likes.count }}</span>
+        <a class='like like-button'>
+		    &hearts;
+		    <span class="like-unlike-message">{{ like_or_unlike }}</span>
+		</a>
+
+        <span class="like-counts">{{ blog.likes.count }}</span>
 
 		{% if user.is_superuser %}
 

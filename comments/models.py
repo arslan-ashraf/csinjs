@@ -14,8 +14,8 @@ class Comment(models.Model):
 		return str(self.user.username)
 
 class Notification(models.Model):
-    sender = models.ForeignKey(User, on_delete = models.CASCADE)
-    receiver = models.ForeignKey(User, on_delete = models.CASCADE)
+    sender = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'sender_notification')
+    receiver = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'receiver_notification')
     type = models.CharField(max_length = 300)
     action = models.CharField(max_length = 300)
     body = models.CharField(max_length = 300)

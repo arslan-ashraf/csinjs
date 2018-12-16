@@ -18,6 +18,15 @@
 		<div class="algorithm-code">{{ algorithm.code|safe }}</div>
 		<br />
 
+		<div class='like'>
+		    &#9825;
+		</div>
+
+		<div class='dislike'>
+		    &#128148;
+		</div>
+
+
 		<div class="comment-count">Comments</div>
 
 		{% for comment in comments %}
@@ -35,11 +44,32 @@
 
 		{% endif %}
 
-		<form method="POST" class="comment_form", enctype="multipart/form-data">
-    		{% csrf_token %}
-    		{{ form.as_p }}
-    		<input type="submit" value="{{ value }}" class='button-class-a'>
-	    </form>
+	    {% if user.is_authenticated %}
+
+    		<form method="POST" class="comment_form", enctype="multipart/form-data">
+        		{% csrf_token %}
+        		{{ form.as_p }}
+        		<input type="submit" value="{{ value }}" class='button-class-a send_comment_button'>
+    	    </form>
+
+	    {% else %}
+	        <a href="{% url 'user:user_login' %}" class="button-class-a">Log In</a>
+	    {% endif %}
+
+	    <div class="comment-count">Comments:</div>
+
+	    <div class="all-comments">
+
+    		{% for comment in comments %}
+
+    			<div class="single-comment">
+    				<p class="comment-username"><b>{{ comment.user }}</b> {{ comment.created_at|timesince }}</p>
+    				<p class="comment-content">{{ comment.content }}</p>
+    			</div>
+
+    		{% endfor %}
+
+        </div>
 
 	</div>
 

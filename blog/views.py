@@ -69,6 +69,9 @@ def show(request, friendly_title = None):
 	# print('#' * 50)
 	return render(request, 'blogs/blog_show.html', items)
 
+def blog_like(request):
+    return
+
 def delete(request, friendly_title = None):
 	if not request.user.is_superuser:
 		return Http404

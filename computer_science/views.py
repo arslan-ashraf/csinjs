@@ -67,12 +67,11 @@ def show(request, friendly_category = None, friendly_title = None):
 	    for each_user in algorithms.users.all():
 	        if each_user == request.user:
 	            continue
-	            Notification.objects.create(sender = request.user.username,
-                                receiver = each_user.username,
-                                action = 'posted a',
-                                body = 'comment',
-                                url = algorithm.get_absolute_url(),
-                                )
+	        Notification.objects.create(sender = request.user.username,
+                                        receiver = each_user.username,
+                                        action = 'posted a',
+                                        body = 'comment',
+                                        url = algorithm.get_absolute_url(),)
         algorithm.users.add(request.user)
         return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	# print('#' * 50)
@@ -85,6 +84,9 @@ def show(request, friendly_category = None, friendly_title = None):
 			  'form': form,
 			  'value': 'Submit Comment', }
 	return render(request, 'algorithms/show.html', items)
+
+def algorithm_like(request):
+    return
 
 def delete(request, friendly_category = None, friendly_title = None):
 	if not request.user.is_superuser:

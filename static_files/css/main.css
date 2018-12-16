@@ -187,18 +187,18 @@ a {
 }
 
 .like {
-    font-size: 20px;
+    font-size: 30px;
     cursor: pointer;
     position: relative;
-    color: rgba(255, 0, 0, .7);
+    color: rgba(255, 0, 0, .3);
 }
 
 .like:hover {
-    color: rgba(55, 0, 0, 1);
+    color: rgba(225, 0, 0, 1);
 }
 
 .like-counts {
-    margin-right 5px;
+    margin-left:; 5px;
     font-size: 20px;
 }
 

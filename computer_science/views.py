@@ -64,7 +64,7 @@ def show(request, friendly_category = None, friendly_title = None):
 	    new_comment = Comment.objects.create(user = request.user, algorithm = algorithm,content = request.POST['typed_comment'])
 	    for each_user in algorithm.users.all():
 	        if each_user == request.user: continue
-	        Notification.objects.create(sender = request.user.username, receiver = each_user.username, action = 'posted a', body = 'comment', url = algorithm.get_absolute_url())
+	        Notification.objects.create(sender = request.user, receiver = each_user, action = 'posted a', body = 'comment', url = algorithm.get_absolute_url())
 	    algorithm.users.add(request.user)
 	    return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	# print('#' * 50)

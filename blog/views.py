@@ -59,7 +59,7 @@ def show(request, friendly_title = None):
 	    for each_user in algorithm.users.all():
 	        if each_user == request.user:
 	            continue
-	        Notification.objects.create(sender = request.user.username, receiver = each_user.username, action = 'posted a', body = 'comment', url = blog.get_absolute_url())
+	        Notification.objects.create(sender = request.user, receiver = each_user, action = 'posted a', body = 'comment', url = blog.get_absolute_url())
 	    blog.users.add(request.user)
 	    return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	form = Comment_form(request.POST or None)

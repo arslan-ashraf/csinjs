@@ -24,6 +24,8 @@
 
 		<br />
 
+        <a class='like like-button'>&hearts;</a><span class="like-counts">{{ blog.likes.count }}</span>
+
 		{% if user.is_superuser %}
 
 			<a href="{% url 'blog:update' blog.friendly_title %}" class="button-class-a">Update</a>

@@ -18,25 +18,7 @@
 		<div class="algorithm-code">{{ algorithm.code|safe }}</div>
 		<br />
 
-		<div class='like'>
-		    &#9825;
-		</div>
-
-		<div class='dislike'>
-		    &#128148;
-		</div>
-
-
-		<div class="comment-count">Comments</div>
-
-		{% for comment in comments %}
-
-			<div class="single-comment">
-				<p class="comment-username"><b>{{ comment.user }}</b> {{ comment.created_at|timesince }}</p>
-				<p class="comment-content">{{ comment.content }}</p>
-			</div>
-
-		{% endfor %}
+		<a class='like like-button'>&hearts; </a><span class="like-counts">{{ algorithm.likes.count }}</span>
 
 		{% if user.is_superuser %}
 

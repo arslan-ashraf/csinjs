@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.models import User
 from .forms import Login_form, Registration_form, Edit_profile_form, Change_password_form
 from comments.models import Comment, Notification
+from django.core.serializers import serialize
 
 def user_login(request):
 	form = Login_form(request.POST or None)
@@ -79,11 +80,15 @@ def user_notifications(request):
         return JsonResponse([], safe = False)
     all_notifications_of_this_user = Notification.objects.filter(receiver = request.user)
     data_arr = []
+    # print('()' * 50)
+    # print('notifications of this user')
+    # print(all_notifications_of_this_user)
+    # print('()' * 50)
     for i in range(0, len(all_notifications_of_this_user)):
         data = {}
-        data['sender'] = all_notifications_of_this_user.sender
-        data['action'] = all_notifications_of_this_user.action
-        data['body'] = all_notifications_of_this_user.body
-        data['url'] = all_notifications_of_this_user.url
+        data['sender'] = all_notifications_of_this_user[i].sender.username
+        data['action'] = all_notifications_of_this_user[i].action
+        data['body'] = all_notifications_of_this_user[i].body
+        data['url'] = all_notifications_of_this_user[i].url
         data_arr.append(data)
     return JsonResponse(data_arr, safe = False)

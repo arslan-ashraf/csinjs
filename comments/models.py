@@ -13,6 +13,9 @@ class Comment(models.Model):
 	def __str__(self):
 		return str(self.user.username)
 
+	class Meta:
+		ordering = ['-created_at']
+
 class Notification(models.Model):
     sender = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'sender_notification')
     receiver = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'receiver_notification')

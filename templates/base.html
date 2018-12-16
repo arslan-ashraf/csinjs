@@ -63,6 +63,22 @@
 					})
 				})
 
+				$('.send_comment_button').on('click', function(){
+					$.ajax({
+						method: 'POST',
+						url: '/send_comment/',
+						dataType: 'html',
+						data: {
+							'typed_comment': $(this).parentNode.children[1].children[1].value,
+							'csrfmiddlewaretoken': $(this).parentNode.children[0].value,
+						},
+						success: function(data){
+							console.log(data)
+							$('.all-comments').prepend(data)
+						}
+					})
+				})
+
 			</script>
 
 			{% block js %} {% endblock js %}

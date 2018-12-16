@@ -44,13 +44,18 @@
 
 	    <div class="comment-count">Comments:</div>
 
-		{% for comment in comments %}
-			<div class="single-comment">
-				<p class="comment-username"><b>{{ comment.user }}</b> {{ comment.created_at|timesince }}</p>
-				<p class="comment-content">{{ comment.content }}</p>
-			</div>
+        <div class="all-comments">
 
-		{% endfor %}
+    		{% for comment in comments %}
+
+    			<div class="single-comment">
+    				<p class="comment-username"><b>{{ comment.user }}</b> {{ comment.created_at|timesince }}</p>
+    				<p class="comment-content">{{ comment.content }}</p>
+    			</div>
+
+    		{% endfor %}
+
+        </div>
 
 	</div>
 

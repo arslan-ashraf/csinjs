@@ -10,7 +10,7 @@ from django.core.paginator import Paginator
 
 def blogs_home(request):
 	blogs_list = Blog.objects.all()
-	paginator = Paginator(blogs_list, 3)
+	paginator = Paginator(blogs_list, 5)
 	page = request.GET.get('page', 1)
 	contacts = paginator.get_page(page)
 	try:

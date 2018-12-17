@@ -90,5 +90,6 @@ def user_notifications(request):
         data['action'] = all_notifications_of_this_user[i].action
         data['body'] = all_notifications_of_this_user[i].body
         data['url'] = all_notifications_of_this_user[i].url
+        data['id'] = all_notifications_of_this_user[i].id
         data_arr.append(data)
     return JsonResponse(data_arr, safe = False)

@@ -1,8 +1,8 @@
 from django.conf.urls import url
-from .views import send_comment
+from .views import delete_notification
 
-app_name = 'comments'
+app_name = 'comment'
 
 urlpatterns = [
-    url(r'^send_comment/$', send_comment, name = 'send_comment'),
+    url(r'^delete-notification/(?P<notification_id>\d+)/$', delete_notification, name = 'delete_notification'),
 ]

@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^', include("computer_science.urls")),
     url(r'^', include("blog.urls")),
     url(r'^', include("user.urls")),
+    url(r'^', include("comments.urls")),
     url(r'^accounts', include("django.contrib.auth.urls")),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

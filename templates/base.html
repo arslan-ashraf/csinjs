@@ -116,7 +116,12 @@
 							let notify = '', n_count = 0
 							for(let i = 0; i < parsed_data.length; i++){
 							    n_count += 1
-							    notify += "<a class='notification-link' href='" + `${parsed_data[i].url}` + "'><li>" + `${parsed_data[i].sender} ${parsed_data[i].action} ${parsed_data[i].body}` + "</li></a>"
+							    notify += "<div class='single-notification-" +
+							    `${parsed_data[i].id}` + "'><li><a class='notification-link' href='" +
+							    `${parsed_data[i].url}` + "'>" +
+							    `${parsed_data[i].sender} ${parsed_data[i].action} ${parsed_data[i].body}` +
+							    "</a><a class='delete-notification-button' href='/delete-notification/" +
+							    `${parsed_data[i].id}` + "'>X</a></li></div>"
 							}
 							$('.notification-count').text(parsed_data)
 							$('.list-of-notifications').append(notify)
@@ -125,6 +130,27 @@
 				}
 
 				notification_ajax()
+
+				$(document).on('click', '.delete-notification-button', function(e){
+                    e.preventDefault()
+                    let delete_button = $(this)
+                    let delete_url = delete_button[0]['href']
+                    console.log()
+                    $.ajax({
+                        method: 'GET',
+                        url: delete_button[0]['href'],
+                        dataType: 'html',
+                        success: function(data){
+                            let i = null
+                            for(i = delete_url.length - 1; i >= 0; i--){
+                                if (typeof(delete[i]) != 'number') break
+                            }
+                            let num = delete_url.slice(i - 1)
+                            console.log('.single-notification-' + num)
+                            $('.single-notification-' + num).remove()
+                        }
+                    })
+                })
 
 			</script>
 

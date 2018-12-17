@@ -61,7 +61,7 @@ def show(request, friendly_category = None, friendly_title = None):
 	if not algorithm:
 		return Http404
 	if (request.method == 'POST'):
-	    new_comment = Comment.objects.create(user = request.user, algorithm = algorithm,content = request.POST['typed_comment'])
+	    new_comment = Comment.objects.create(user = request.user, algorithm = algorithm, content = request.POST['typed_comment'])
 	    for each_user in algorithm.users.all():
 	        if each_user == request.user: continue
 	        Notification.objects.create(sender = request.user, receiver = each_user, action = 'posted a', body = 'comment', url = algorithm.get_absolute_url())

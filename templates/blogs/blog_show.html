@@ -46,10 +46,10 @@
     	    </form>
 
 	    {% else %}
-	        <a href="{% url 'user:user_login' %}" class="button-class-a">Log In</a>
+	        <a href="{% url 'user:user_login' %}" class="button-class-a">Sign in to like and comment</a>
 	    {% endif %}
 
-	    <div class="comment-count">Comments:</div>
+	    <div class="comment-count">Comments: ({{ comments.count }})</div>
 
         <div class="all-comments">
 

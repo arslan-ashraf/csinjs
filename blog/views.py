@@ -6,16 +6,26 @@ from .forms import Blog_form
 from comments.forms import Comment_form
 from django.contrib.auth.decorators import login_required
 from comments.models import Comment, Notification
+from django.core.paginator import Paginator
 
 def blogs_home(request):
-	blogs = Blog.objects.all()
-	items = { 'blogs': blogs, 'title': 'Articles' }
-	return render(request, 'blogs/blogs_home.html', items)
+	blogs_list = Blog.objects.all()
+	paginator = Paginator(blogs_list, 3)
+	page = request.GET.get('page', 1)
+	contacts = paginator.get_page(page)
+	try:
+	    blogs = paginator.page(page)
+	except PageNotAnInteger:
+	    blogs = paginator.page(1)
+	except EmptyPage:
+	    blogs = paginator.page(paginator.num_pages)
+    # items =
+	return render(request, 'blogs/blogs_home.html', { 'blogs': blogs, 'title': 'Articles', 'contacts': contacts })
 
 def create(request):
-	print('()' * 50)
-	print('create')
-	print('()' * 50)
+# 	print('()' * 50)
+# 	print('create')
+# 	print('()' * 50)
 	if not request.user.is_superuser:
 		return Http404
 	form = Blog_form(request.POST or None, request.FILES or None)

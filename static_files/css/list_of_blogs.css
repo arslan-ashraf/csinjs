@@ -17,3 +17,27 @@
 	color: rgb(29, 39, 183);
 	cursor: pointer;
 }
+
+.pagination {
+	margin: 10px 0;
+}
+
+.step-links {
+	font-family: cursive
+}
+
+.page-button {
+	border-radius: 5px;
+	border: 0;
+	padding: 7px;
+	margin: 5px;
+	background: rgb(212, 141, 22);
+	color: white;
+	font-size: 16px;
+}
+
+.page-button:hover {
+	color: rgb(212, 141, 22);
+	background: white;
+	cursor: pointer;
+}

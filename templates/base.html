@@ -85,6 +85,7 @@
 
 				$('.like-button').on('click', function(){
 				    let like_button = $(this)
+				    let like_message = $('.like-unlike-message')
 					$.ajax({
 						method: 'GET',
 						url: $(location).attr('href') + 'like/',
@@ -97,8 +98,10 @@
     							$('.like-counts').text(parsed_data['likes'])
     							if (parsed_data['current_user_likes'] == 'Unlike'){
     							    like_button.css({'color': 'rgba(255, 0, 0, 1)'})
+    							    like_message.html('Unlike')
     							}   else {
     							    like_button.css({'color': 'rgba(255, 0, 0, 0.7)'})
+    							    like_message.html('Like')
     							}
                             }
 						}
@@ -135,7 +138,6 @@
                     e.preventDefault()
                     let delete_button = $(this)
                     let delete_url = delete_button[0]['href']
-                    console.log()
                     $.ajax({
                         method: 'GET',
                         url: delete_button[0]['href'],
@@ -146,7 +148,6 @@
                                 if (typeof(delete[i]) != 'number') break
                             }
                             let num = delete_url.slice(i - 1)
-                            console.log('.single-notification-' + num)
                             $('.single-notification-' + num).remove()
                         }
                     })

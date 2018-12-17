@@ -68,19 +68,19 @@ def show(request, friendly_category = None, friendly_title = None):
 	    algorithm.users.add(request.user)
 	    return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	form = Comment_form(request.POST or None)
-	current_user_likes = False
 	like_or_unlike = 'Like'
+	user_likes = False
 	if request.user.is_authenticated:
 	    if request.user in algorithm.likes.all():
-	        current_user_likes = True
-	    if current_user_likes:
 	        like_or_unlike = 'Unlike'
+	        user_likes = True
 	items = { 'algorithm': algorithm,
 			  'title': algorithm.title,
 			  'comments': algorithm.comment_set.all(),
 			  'form': form,
 			  'value': 'Submit Comment',
-			  'like_or_unlike': like_or_unlike, }
+			  'like_or_unlike': like_or_unlike,
+			  'user_likes': user_likes }
 	return render(request, 'algorithms/show.html', items)
 
 def algorithm_like(request, friendly_category = None, friendly_title = None):

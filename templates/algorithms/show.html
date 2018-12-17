@@ -18,7 +18,7 @@
 		<div class="algorithm-code">{{ algorithm.code|safe }}</div>
 		<br />
 
-		<a class='like like-button'>
+		<a class='like like-button' style="{% if user_likes %} color: red; {% endif %}">
 		    &hearts;
 		    <span class="like-unlike-message">{{ like_or_unlike }}</span>
 		</a>

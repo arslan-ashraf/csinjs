@@ -63,19 +63,19 @@ def show(request, friendly_title = None):
 	    blog.users.add(request.user)
 	    return render(request, 'comments/new_comment.html', { 'comment': new_comment })
 	form = Comment_form(request.POST or None)
-	current_user_likes = False
 	like_or_unlike = 'Like'
+	user_likes = False
 	if request.user.is_authenticated:
 	    if request.user in blog.likes.all():
-	        current_user_likes = True
-	    if current_user_likes:
 	        like_or_unlike = 'Unlike'
+	        user_likes = True
 	items = { 'blog': blog,
 	          'title': blog.title,
 	          'comments': blog.comment_set.all(),
 	          'form': form,
 	          'value': 'Submit Comment',
-	          'like_or_unlike': like_or_unlike,}
+	          'like_or_unlike': like_or_unlike,
+	          'user_likes': user_likes }
 	# print('#' * 50)
 	# print(Blog[0])
 	# print('#' * 50)

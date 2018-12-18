@@ -42,8 +42,8 @@
 
 		{% endfor %}
 
-		        {% for contact in contacts %}
-            {{ contact.full_name|upper }}<br>
+		{% for contact in contacts %}
+            {{ contact.full_name|upper }}&nbsp;&nbsp;
         {% endfor %}
 
         <div class="pagination">

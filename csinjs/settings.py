@@ -24,7 +24,7 @@ SECRET_KEY = '=*ntzv+%=q6raed-k6x)fggp&*2c3m&=opivtbk%hx6wz*ds*d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["arslan.pythonanywhere.com"]
+ALLOWED_HOSTS = ["arslan.pythonanywhere.com", "www.arslan-ashraf.com"]
 
 # Application definition
 
